@@ -6,8 +6,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    list-style-type: none;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
   }
   
+  :root{
+    --white: white;
+    --black: black;
+    --DarkBlue: 3,37,65;
+  }
+
   .row {
     display: flex;
     flex-wrap: wrap;
@@ -133,8 +141,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
   }
 
-  .source__sans_pro{
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-  }
+
+
 `;
 export default GlobalStyle;
