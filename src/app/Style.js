@@ -13,7 +13,9 @@ const GlobalStyle = createGlobalStyle`
   :root{
     --white: white;
     --black: black;
-    --DarkBlue: 3,37,65;
+    --darkBlue: 3,37,65;
+    --lightGrey: 227,227,227;
+
   }
 
   .row {

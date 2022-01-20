@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { submenuCss, submenuDropup } from "./SubmenuStyle";
 
 const white = css`
   color: var(--white);
@@ -148,44 +149,6 @@ export const NavbarRight = styled.div`
         align-items: center;
         background-color: #c61439;
       }
-      .tooltip {
-        position: absolute;
-        left: 50%;
-        top: 30px;
-        padding: 0.8rem 0.8rem;
-        transform: translateX(-50%);
-        width: 273px;
-        background-color: var(--white);
-        border: 1px solid rgba(33, 37, 41, 0.15);
-        li {
-          margin-left: 0;
-        }
-        &__title {
-          margin-bottom: 12px;
-          h2 {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #000;
-            span {
-              color: #666;
-              font-weight: 600;
-            }
-          }
-        }
-        &__text {
-          p {
-            font-size: 1em;
-            font-weight: 400;
-            color: var(--black);
-            a {
-              font-size: 1em;
-              color: #000;
-              opacity: 0.6;
-              text-decoration: underline;
-            }
-          }
-        }
-      }
     }
     &__user {
       button {
@@ -205,6 +168,24 @@ export const NavbarRight = styled.div`
           font-size: 0.9em;
           text-transform: uppercase;
         }
+      }
+      &-content {
+        position: absolute;
+        top: 42px;
+        left: 50%;
+        transform: translateX(-50%);
+        ${submenuDropup}
+        .submenu__dropup {
+          top: -17px;
+        }
+        ${submenuCss}
+        li {
+          padding: 6px 2px;
+          font-size: 0.9em;
+          display: flex;
+          justify-content: center;
+        }
+        width: 150px;
       }
     }
   }

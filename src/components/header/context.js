@@ -1,42 +1,38 @@
-import React, { useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-const HeaderContext = React.createContext();
+const HeaderContext = createContext();
 
 const HeaderProvider = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const [page, setPage] = useState({ page: "", links: [] });
-  const [location, setLocation] = useState({});
-  const openSidebar = () => {
-    setIsSidebarOpen(true);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const [submenuStyle, setSubmenuStyle] = useState({});
+  const [navbarSubmenuControl, setNavbarSubmenuControl] = useState([
+    { name: "ADD", control: false, id: 1 },
+    { name: "TOOLTIP", control: false, id: 2 },
+    { name: "USER", control: false, id: 3 },
+  ]);
+  const [navbarUser, setNavbarUser] = useState(false);
+
   const openSubmenu = (props) => {
-    console.log(props);
-    // const page = sublinks.find((link) => link.page === text);
-    // setPage(page);
-    // setLocation(coordinates);
-    // setIsSubmenuOpen(true);
-  };
-  const closeSubmenu = () => {
-    setIsSubmenuOpen(false);
+    setSubmenuStyle({ left: props.center, top: props.bottom });
   };
 
   return (
     <HeaderContext.Provider
       value={{
         openSubmenu,
+        submenuStyle,
+        navbarSubmenuControl,
+        setNavbarSubmenuControl,
+        navbarUser,
+        setNavbarUser,
       }}
     >
       {children}
     </HeaderContext.Provider>
   );
 };
-// make sure use
-export const useHeaderContext = () => {
+
+const useHeaderContext = () => {
   return useContext(HeaderContext);
 };
 
-export { HeaderContext, HeaderProvider };
+export { HeaderProvider, useHeaderContext };
