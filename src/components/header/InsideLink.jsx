@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const InsideLink = ({ links }) => {
+const InsideList = ({ links }) => {
   return (
-    <ul>
+    <ul className="navbar-inside__list">
       {links.map((item, i) => (
-        <li key={i}>
+        <li key={i} className="navbar-inside__link">
           <Link to={item.path}>{item.linkName}</Link>
         </li>
       ))}
@@ -13,4 +13,4 @@ const InsideLink = ({ links }) => {
   );
 };
 
-export default InsideLink;
+export default InsideList;

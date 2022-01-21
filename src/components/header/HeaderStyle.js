@@ -54,6 +54,7 @@ export const Navbar = styled.header`
 
 export const NavbarLeft = styled.div`
   ${displayFlex}
+  align-items: center;
   .navbar {
     &__logo {
       margin-right: 25px;
@@ -66,16 +67,50 @@ export const NavbarLeft = styled.div`
 `;
 
 export const NavbarMenu = styled.nav`
+  ${displayFlex}
+  align-items: center;
   .navbar {
     &__list {
       ${displayFlex}
+      align-items: center;
     }
 
     &__link {
-      font-weight: 600;
+      position: relative;
       margin-right: 35px;
-      a {
+      padding: 20px 0;
+      button {
+        font-weight: 600;
         ${white}
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      &:hover {
+        .navbar-inside__list {
+          display: block;
+        }
+      }
+    }
+    &-inside__list {
+      position: absolute;
+      top: 47px;
+      left: -20px;
+      width: 173px;
+      ${submenuCss}
+      display: none;
+    }
+    &-inside__link {
+      background-color: var(--white);
+      a {
+        color: #000;
+        font-weight: 400;
+        &:hover {
+          color: #16181b;
+        }
+      }
+      &:hover {
+        background-color: #f8f9fa;
       }
     }
   }
@@ -186,6 +221,13 @@ export const NavbarRight = styled.div`
           justify-content: center;
         }
         width: 150px;
+      }
+    }
+    &__search {
+      button {
+        background-color: transparent;
+        border: unset;
+        cursor: pointer;
       }
     }
   }

@@ -10,6 +10,8 @@ const HeaderProvider = ({ children }) => {
     { name: "USER", control: false, id: 3 },
   ]);
   const [navbarUser, setNavbarUser] = useState(false);
+  const [searchBarControl, setSearchBarControl] = useState(false);
+  const [submenuContol, setSubmenuContol] = useState(false);
 
   const openSubmenu = (props) => {
     setSubmenuStyle({ left: props.center, top: props.bottom });
@@ -24,6 +26,10 @@ const HeaderProvider = ({ children }) => {
         setNavbarSubmenuControl,
         navbarUser,
         setNavbarUser,
+        searchBarControl,
+        setSearchBarControl,
+        submenuContol,
+        setSubmenuContol,
       }}
     >
       {children}

@@ -15,8 +15,13 @@ const GlobalStyle = createGlobalStyle`
     --black: black;
     --darkBlue: 3,37,65;
     --lightGrey: 227,227,227;
-
+    --padding-tp-btm-40: 40px;
   }
+
+.padding-top-bootom{
+  padding-left: var(--padding-tp-btm-40);
+  padding-right: var(--padding-tp-btm-40);
+}
 
   .row {
     display: flex;

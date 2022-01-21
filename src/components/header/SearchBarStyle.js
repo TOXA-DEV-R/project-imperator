@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const SearchBarBlock = styled.div`
   width: 100%;
   .search-bar {
+    position: absolute;
+    top: 64px;
+    left: 0;
     &__container {
+      display: flex;
+      flex-direction: column;
     }
     &__section {
-      width: 100%;
-      position: absolute;
-      top: 64px;
-      left: 0;
       padding: 0 40px;
+      width: 100%;
       border-top: 1px solid rgba(var(--lightGrey), 1);
       border-bottom: 1px solid rgba(var(--lightGrey), 1);
     }
@@ -42,6 +44,12 @@ export const SearchBarForm = styled.form`
       top: 50%;
       left: 0;
       transform: translateY(-50%);
+      transition: all 150ms ease-in-out;
+      &:last-of-type {
+        right: 0;
+        left: unset;
+        cursor: pointer;
+      }
     }
   }
 `;

@@ -1,7 +1,8 @@
 const HeaderData = [
   {
-    name: "Movies",
+    label: "Movies",
     path: "/",
+    id: 1,
     links: [
       { linkName: "Popular", path: "/" },
       { linkName: "Now Playing", path: "/" },
@@ -10,8 +11,9 @@ const HeaderData = [
     ],
   },
   {
-    name: "TV Shows",
+    label: "TV Shows",
     path: "/",
+    id: 2,
     links: [
       { linkName: "Popular", path: "/" },
       { linkName: "Airing Today", path: "/" },
@@ -20,8 +22,9 @@ const HeaderData = [
     ],
   },
   {
-    name: "People",
+    label: "People",
     path: "/",
+    id: 3,
     links: [
       {
         linkName: "Popular People",
@@ -30,8 +33,9 @@ const HeaderData = [
     ],
   },
   {
-    name: "More",
+    label: "More",
     path: "/",
+    id: 4,
     links: [
       { linkName: "Discussions", path: "/" },
       { linkName: "Leaderboard", path: "/" },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import { Navbar } from "./HeaderStyle";
 import HeaderRight from "./HeaderRight";
 import HeaderLeft from "./HeaderLeft";
@@ -7,8 +7,13 @@ import { useHeaderContext } from "./context";
 import SearchBar from "./SearchBar";
 
 const Header = () => {
-  const { openSubmenu, navbarSubmenuControl, setNavbarSubmenuControl } =
-    useHeaderContext();
+  const {
+    openSubmenu,
+    navbarSubmenuControl,
+    setNavbarSubmenuControl,
+    searchBarControl,
+    setSubmenuContol,
+  } = useHeaderContext();
 
   const displaySubmenu = (props) => {
     const { id, e } = props;
@@ -23,6 +28,7 @@ const Header = () => {
           : { ...item, control: false };
       })
     );
+    setSubmenuContol(false);
 
     openSubmenu({ center, bottom });
   };
@@ -38,7 +44,7 @@ const Header = () => {
         </div>
       </Navbar>
       <Submenu />
-      <SearchBar />
+      {searchBarControl && <SearchBar />}
     </Fragment>
   );
 };
