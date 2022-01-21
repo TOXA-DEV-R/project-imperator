@@ -1,13 +1,35 @@
+import { useEffect } from "react";
 import { NavbarRight } from "./HeaderStyle";
 import { BiPlusMedical } from "react-icons/bi";
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { IoMdArrowDropup } from "react-icons/io";
+import { AiOutlineClose } from "react-icons/ai";
 import { useHeaderContext } from "./context";
 
 const HeaderRight = ({ displaySubmenu }) => {
-  const { setNavbarUser, navbarUser } = useHeaderContext();
+  const {
+    setNavbarUser,
+    navbarUser,
+    searchBarControl,
+    setSearchBarControl,
+    setNavbarSubmenuControl,
+    navbarSubmenuControl,
+    submenuContol,
+  } = useHeaderContext();
+
+  const eventDocument = (e) => {
+    // console.log(e);
+    if (submenuContol) {
+      // setNavbarSubmenuControl(
+      //   navbarSubmenuControl.map((item) => ({ ...item, control: false }))
+      // );
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", eventDocument);
+  }, [navbarSubmenuControl]);
 
   return (
     <NavbarRight className="navbar__right">
@@ -46,10 +68,17 @@ const HeaderRight = ({ displaySubmenu }) => {
             </ul>
           )}
         </li>
-        <li className="navabar__search">
-          <Link to="/">
-            <FaSearch color="white" size={21} />
-          </Link>
+        <li className="navbar__search">
+          <button
+            type="button"
+            onClick={() => setSearchBarControl((ct) => !ct)}
+          >
+            {searchBarControl ? (
+              <AiOutlineClose color="white" size={21} />
+            ) : (
+              <FaSearch color="#00b4e4" size={21} />
+            )}
+          </button>
         </li>
       </ul>
     </NavbarRight>
