@@ -1,38 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { NavbarLeft, NavbarMenu } from "./HeaderStyle";
+import {
+  NavbarLeft,
+  NavbarNav,
+  NavbarNavItem,
+  NavbarNavList,
+} from "./HeaderStyle";
 import Logo from "../../assets/images/Logo_1.svg";
 import HeaderData from "./HeaderData";
 import InsideList from "./InsideLink";
 
-const HeaderLeft = () => {
-  const [navbarLinId, setNavbarLinId] = useState(null);
+const NavbarLeftRow = () => {
+  const [navbarItemId, setNavbarItemId] = useState(null);
 
   const navbarLinkOver = (id) => {
-    setNavbarLinId(id);
+    setNavbarItemId(id);
   };
 
   return (
     <NavbarLeft className="navbar__left">
-      <Link to="/" className="navbar__logo">
+      <Link to="/" className="navbar-brand">
         <img src={Logo} alt="logo" />
       </Link>
-      <NavbarMenu className="navbar__menu">
-        <ul className="navbar__list">
+      <NavbarNav className="navbar-nav">
+        <NavbarNavList className="navbar-nav__list">
           {HeaderData.map((item) => (
-            <li key={item.id} className="navbar__link">
+            <NavbarNavItem key={item.id} className="navbar-nav__item">
               <button type="button" onMouseOver={() => navbarLinkOver(item.id)}>
                 {item.label}
               </button>
-              {item.id === navbarLinId ? (
+              {item.id === navbarItemId ? (
                 <InsideList links={item.links} />
               ) : null}
-            </li>
+            </NavbarNavItem>
           ))}
-        </ul>
-      </NavbarMenu>
+        </NavbarNavList>
+      </NavbarNav>
     </NavbarLeft>
   );
 };
 
-export default HeaderLeft;
+export default NavbarLeftRow;

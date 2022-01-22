@@ -15,6 +15,7 @@ const HeaderProvider = ({ children }) => {
 
   const openSubmenu = (props) => {
     setSubmenuStyle({ left: props.center, top: props.bottom });
+    setSubmenuContol(false);
   };
 
   return (

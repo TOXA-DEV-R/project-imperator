@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import {
   SubmenuContainer,
-  SubmenuColumnAdd,
-  SubmenuColumnTooltip,
+  SubmenuAddList,
+  SubmenuNotificationList,
   SubmenuUser,
+  Dropup,
+  SubmenuAddItem,
+  SubmenuNotificationItem,
+  SubmenuUserProfile,
+  SubmenuUserGruop,
 } from "./SubmenuStyle";
 import { IoMdArrowDropup } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -21,63 +26,64 @@ const Submenu = () => {
   };
 
   useEffect(() => {}, [navbarSubmenuControl]);
+
   return (
     <SubmenuContainer className="submenu" style={submenuStyle}>
       {navbarSubmenuControl[0].control && (
-        <SubmenuColumnAdd className="submenu-add__column">
-          <span className="submenu__dropup">
+        <SubmenuAddList className="submenu-add__list">
+          <Dropup className="submenu__dropup">
             <IoMdArrowDropup color="white" size={28} />
-          </span>
-          <li>
+          </Dropup>
+          <SubmenuAddItem className="submenu-add__item">
             <Link to="/"> Add New Movie </Link>
-          </li>
-          <li>
+          </SubmenuAddItem>
+          <SubmenuAddItem className="submenu-add__item">
             <Link to="/"> Add New TV Show </Link>
-          </li>
-        </SubmenuColumnAdd>
+          </SubmenuAddItem>
+        </SubmenuAddList>
       )}
       {navbarSubmenuControl[1].control && (
-        <SubmenuColumnTooltip className="submenu-tooltip">
-          <span className="submenu__dropup">
+        <SubmenuNotificationList className="submenu-notification__list">
+          <Dropup className="submenu__dropup">
             <IoMdArrowDropup color="white" size={28} />
-          </span>
-          <li className="submenu-tooltip__title">
-            <h2>
+          </Dropup>
+          <SubmenuNotificationItem className="submenu-notification__item">
+            <h2 className="submenu-notification__title">
               Unread Notifications <span>0</span>
             </h2>
-          </li>
-          <li className="submenu-tooltip__text">
-            <p>
+          </SubmenuNotificationItem>
+          <SubmenuNotificationItem className="submenu-notification__item">
+            <p className="submenu-notification__text">
               Good job! Looks like you're all caught up.
               <Link to="/">View All</Link>
             </p>
-          </li>
-        </SubmenuColumnTooltip>
+          </SubmenuNotificationItem>
+        </SubmenuNotificationList>
       )}
       {navbarSubmenuControl[2].control && (
-        <SubmenuUser className="user">
-          <span className="submenu__dropup">
+        <SubmenuUser className="submenu__user">
+          <Dropup className="submenu__dropup">
             <IoMdArrowDropup color="white" size={28} />
-          </span>
-          <div className="user__profile">
+          </Dropup>
+          <SubmenuUserProfile className="submenu__user-profile">
             <h2>
               <Link to="/">Jone</Link>
             </h2>
             <Link to="/">View profile</Link>
-          </div>
-          <div className="user__gruop">
+          </SubmenuUserProfile>
+          <SubmenuUserGruop className="submenu__user-gruop">
             <UserGroup path="/" name="Discussions" />
             <UserGroup path="/" name="Lists" />
             <UserGroup path="/" name="Ratings" />
             <UserGroup path="/" name="Watchlist" />
-          </div>
-          <div className="user__gruop">
+          </SubmenuUserGruop>
+          <SubmenuUserGruop className="submenu__user-gruop">
             <UserGroup path="/" name="Edit Profile" />
             <UserGroup path="/" name="Settings" />
-          </div>
-          <div className="user__gruop">
+          </SubmenuUserGruop>
+          <SubmenuUserGruop className="submenu__user-gruop">
             <UserGroup path="/" name="Logout" />
-          </div>
+          </SubmenuUserGruop>
         </SubmenuUser>
       )}
     </SubmenuContainer>

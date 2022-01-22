@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
-import { SearchBarBlock, SearchBarForm } from "./SearchBarStyle";
+import {
+  SearchBarBlock,
+  SearchBarContainer,
+  SearchBarForm,
+  SearchBarIcon,
+  SearchBarInput,
+  SearchBarSection,
+} from "./SearchBarStyle";
 import SearchingSuggest from "./SearchingSuggest";
 
 const SearchBar = () => {
@@ -9,19 +16,19 @@ const SearchBar = () => {
 
   return (
     <SearchBarBlock className="search-bar__block">
-      <div className="search-bar__container">
-        <section className="search-bar__section">
+      <SearchBarContainer className="search-bar__container">
+        <SearchBarSection className="search-bar__section">
           <SearchBarForm className="search-bar__form">
-            <input
+            <SearchBarInput
               type="search"
               name="search"
               placeholder="Search for a movie, tv show,person..."
               className="search-bar__input"
             />
-            <span className="search-bar__icon">
+            <SearchBarIcon className="search-bar__icon">
               <FaSearch style={{ opacity: 0.8 }} size={15} />
-            </span>
-            <span
+            </SearchBarIcon>
+            <SearchBarIcon
               className="search-bar__icon"
               onMouseOver={() => setSearchControl({ opacity: 7 })}
               onMouseOut={() => setSearchControl({ opacity: 0 })}
@@ -31,11 +38,11 @@ const SearchBar = () => {
                 style={{ opacity: 0.8, marginLeft: "5px" }}
                 size={18}
               />
-            </span>
+            </SearchBarIcon>
           </SearchBarForm>
-        </section>
+        </SearchBarSection>
         <SearchingSuggest />
-      </div>
+      </SearchBarContainer>
     </SearchBarBlock>
   );
 };
