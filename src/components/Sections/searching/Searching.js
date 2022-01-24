@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "../../../app/Style";
 import {
@@ -9,11 +9,12 @@ import {
   SearchingTaw,
 } from "./SectionsStyle";
 
-const Searching = () => {
+const Searching = memo(() => {
+  console.log("Searching");
   return (
     <SearchingPrimary className="searching-primary">
       <Container>
-        <Row>
+        <Row className="justify-center">
           <Col md="12">
             <SearchingNumbers className="searching-primary__numbers">
               <h2>2021</h2>
@@ -25,7 +26,7 @@ const Searching = () => {
               </h3>
             </SearchingTaw>
           </Col>
-          <Col md="12">
+          <Col md="11">
             <SearchingForm className="searching-primary__form">
               <SearchingInputs className="searching-primary__inputs">
                 <input
@@ -41,6 +42,6 @@ const Searching = () => {
       </Container>
     </SearchingPrimary>
   );
-};
+});
 
 export default Searching;

@@ -1,8 +1,7 @@
-import React from "react";
 import axios from "axios";
 
 const http = axios.create({
-    baseURL: "https://reqres.in/api",
+    baseURL: "https://api.themoviedb.org/3/movie",
 });
 
 export default http;

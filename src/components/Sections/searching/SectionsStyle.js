@@ -63,14 +63,11 @@ export const SearchingNumbers = styled.div`
 export const SearchingTaw = styled.div`
   text-align: center;
   h2 {
-    font-size: 2.8em;
-    ${font_spaceMono}
-
+    font-size: 2.7em;
     ${colorWhite}
   }
   h3 {
-    font-size: 1.8em;
-    ${font_spaceMono}
+    font-size: 1.6em;
     a {
       ${colorWhite}
       ${transition}

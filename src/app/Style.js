@@ -93,11 +93,11 @@ const mediaScreenMin = (ct_inWith, width, children = null) => {
 // };
 
 const basicWidth = css`
-  max-width: 1200px;
+  max-width: 1278px;
   width: 100%;
 `;
 const fluidWidth = css`
-  max-width: 100% !important;
+  max-width: 1340px !important;
   width: 100% !important;
 `;
 

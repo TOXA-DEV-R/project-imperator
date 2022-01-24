@@ -2,17 +2,18 @@ import { Fragment, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HeaderProvider } from "../components/header/context";
 import Header from "../components/header/Header";
+import { SectionsProvider } from "../components/Sections/context";
 import Main from "../containers/main/Main";
 import { GlobalStyle } from "./Style";
 
 const App = () => {
   const headerControl = (event) => {
-    console.log(event);
+    // console.log(event);
   };
   useEffect(() => {
     window.addEventListener("scroll", headerControl);
     return window.addEventListener("scroll", headerControl);
-  });
+  }, []);
 
   return (
     <Fragment>
@@ -21,7 +22,14 @@ const App = () => {
         <Header />
       </HeaderProvider>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={
+            <SectionsProvider>
+              <Main />
+            </SectionsProvider>
+          }
+        />
       </Routes>
     </Fragment>
   );
