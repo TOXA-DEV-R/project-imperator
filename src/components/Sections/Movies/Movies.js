@@ -1,28 +1,17 @@
 import React, { useState } from "react";
 import { Container } from "../../../app/Style";
+import { useSectionContext } from "../context";
+import MoviesabsContentItems from "./MoviesabsContentItems";
 import {
   Movie,
   MovieTab,
   MovieTabs,
-  MTabsContentItems,
-  MTabsContentItem,
   MovieTitle,
+  MTabsContentItems,
 } from "./MoviesStyle";
-import Streaming from "../../../assets/images/Streaming.jpg";
-import OnTV from "../../../assets/images/On TV.jpg";
-import ForRent from "../../../assets/images/For Rent.jpg";
-import InTheaters from "../../../assets/images/In Theaters.jpg";
 
-const Movies = ({ tabs, title }) => {
-  const [movieTabCont, setMovieTabCont] = useState(1);
-  const movies = [Streaming, OnTV, ForRent, InTheaters];
-
-  const tabsControl = (id) => {
-    if (id === 0) setMovieTabCont(1);
-    else if (id > tabs.length) setMovieTabCont(tabs.length);
-    setMovieTabCont(id);
-  };
-
+const Movies = ({ tabs, title, tabsControl, movieTabCont }) => {
+  const { setCategory, setPage } = useSectionContext();
   return (
     <Movie className="movie">
       <Container className="movie__container">
@@ -45,7 +34,7 @@ const Movies = ({ tabs, title }) => {
         </MovieTabs>
       </Container>
       <Container initalWith={true} fluid={true}>
-        {/* {movies.map()} */}
+        <MoviesabsContentItems />
       </Container>
     </Movie>
   );

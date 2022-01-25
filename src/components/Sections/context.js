@@ -4,29 +4,31 @@ import http from "../../services/http";
 const sectionContext = createContext();
 
 const SectionsProvider = ({ children }) => {
-  const [data, setData] = useState([]);
-  const [useEffectControl, setUseEffectControl] = useState(false);
-
-  const fetchMovie = async () => {
-    try {
-      const response = await http.get(
-        "popular?api_key=2dd08287b759101888b5a20c23399375&language=en-US&page=1"
-      );
-      const results = await response.data;
-      setData(results.results);
-      setUseEffectControl(true);
-      return results;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const KEY = "2dd08287b759101888b5a20c23399375";
+  const [category, setCategory] = useState("popular");
+  const [page, setPage] = useState(1);
+  const [Loading, setLoading] = useState(true);
+  const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
-    fetchMovie();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await http.get(
+          `${category}?api_key=${KEY}&language=en-US&page=${page}`
+        );
+        setMoviesData(response.data.results);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [category, page, Loading]);
 
   return (
-    <sectionContext.Provider value={{ data, fetchMovie }}>
+    <sectionContext.Provider
+      value={{ setCategory, setPage, Loading, moviesData }}
+    >
       {children}
     </sectionContext.Provider>
   );

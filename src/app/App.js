@@ -7,14 +7,14 @@ import Main from "../containers/main/Main";
 import { GlobalStyle } from "./Style";
 
 const App = () => {
-  const headerControl = (event) => {
-    // console.log(event);
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", headerControl);
-    return window.addEventListener("scroll", headerControl);
-  }, []);
-
+  // const headerControl = (event) => {
+  //   // console.log(event);
+  // };
+  // useEffect(() => {
+  //   window.addEventListener("scroll", headerControl);
+  //   return window.addEventListener("scroll", headerControl);
+  // }, []);
+  console.log("app");
   return (
     <Fragment>
       <GlobalStyle />

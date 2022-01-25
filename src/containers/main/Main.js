@@ -2,21 +2,32 @@ import React, { useEffect, useState } from "react";
 import { useSectionContext } from "../../components/Sections/context";
 import Movies from "../../components/Sections/Movies/Movies";
 import Searching from "../../components/Sections/searching/Searching";
+import http from "../../services/http";
+import tabs from "./mainData";
 import { PrimaryMain } from "./MainStyle";
 
 const Main = () => {
-  const tabs = [
-    { name: "Streaming", id: 1 },
-    { name: "On TV", id: 2 },
-    { name: "For Rent", id: 3 },
-    { name: "In Theaters", id: 4 },
-  ];
-  const { data, fetchMovie } = useSectionContext();
+  const popularTab = tabs.popular;
+  const [movieTabCont, setMovieTabCont] = useState(1);
+  const { Loading } = useSectionContext();
+
+  const tabsControl = (id) => {
+    if (id === 0) setMovieTabCont(1);
+    else if (id > popularTab.length) setMovieTabCont(popularTab.length);
+    setMovieTabCont(id);
+  };
+
+  if (Loading) return <h1>Loading...</h1>;
 
   return (
     <PrimaryMain>
       <Searching />
-      <Movies title={"What's Popular"} tabs={tabs} />
+      <Movies
+        title={"What's Popular"}
+        tabs={popularTab}
+        movieTabCont={movieTabCont}
+        tabsControl={tabsControl}
+      />
     </PrimaryMain>
   );
 };

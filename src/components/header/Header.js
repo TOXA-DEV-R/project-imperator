@@ -32,7 +32,7 @@ const Header = () => {
   };
 
   useEffect(() => {}, [setNavbarSubmenuControl]);
-
+  console.log("header");
   return (
     <Fragment>
       <Navbar className="navbar">

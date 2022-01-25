@@ -1,12 +1,16 @@
 import React from "react";
+import { useSectionContext } from "../context";
 import { MTabsContentItems, MTabsContentItem } from "./MoviesStyle";
 
-const MoviesabsContentItems = ({ movies }) => {
+const MoviesabsContentItems = () => {
+  const { moviesData } = useSectionContext();
+  console.log(moviesData);
   return (
     <MTabsContentItems className="movie__tabs-content-items">
-      {movies.map((item, i) => (
+      {moviesData.map((item, i) => (
         <MTabsContentItem className="movie__tabs-content-item">
-          <img src={item} alt="images" />
+          <h2>{item.original_title}</h2>
+          <p>{item.release_date}</p>
         </MTabsContentItem>
       ))}
     </MTabsContentItems>
