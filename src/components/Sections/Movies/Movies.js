@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "../../../app/Style";
 import { useSectionContext } from "../context";
 import MoviesabsContentItems from "./MoviesabsContentItems";
-import {
-  Movie,
-  MovieTab,
-  MovieTabs,
-  MovieTitle,
-  MTabsContentItems,
-} from "./MoviesStyle";
+import { Movie, MovieTab, MovieTabs, MovieTitle } from "./MoviesStyle";
 
 const Movies = ({ tabs, title, tabsControl, movieTabCont }) => {
-  const { setCategory, setPage } = useSectionContext();
+  const { setCategory, setPage, setList } = useSectionContext();
+  const moviesHandle = (id, listName) => {
+    tabsControl(id);
+    setList(listName);
+  };
+
   return (
     <Movie className="movie">
       <Container className="movie__container">
@@ -26,14 +25,17 @@ const Movies = ({ tabs, title, tabsControl, movieTabCont }) => {
                 movieTabCont === tab.id ? "active" : ""
               }`}
             >
-              <button type="button" onClick={() => tabsControl(tab.id)}>
+              <button
+                type="button"
+                onClick={() => moviesHandle(tab.id, tab.listName)}
+              >
                 {tab.name}
               </button>
             </MovieTab>
           ))}
         </MovieTabs>
       </Container>
-      <Container initalWith={true} fluid={true}>
+      <Container initalWith={true} fluid={true} style={{ marginTop: "20px" }}>
         <MoviesabsContentItems />
       </Container>
     </Movie>

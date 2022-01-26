@@ -18,7 +18,23 @@ export const GlobalStyle = createGlobalStyle`
     --padding-tp-btm-40: 40px;
     --spaceMono : "Space Mono", monospace;
     --userscrollTrack1: 255,202,154;
+    --imageBorderRadius: 8px;
   }
+
+
+body::-webkit-scrollbar {
+  width: .5em;
+}
+
+body::-webkit-scrollbar-track{
+  background: white;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(219,219,219);
+  outline: none;
+  border-radius: 6px;
+}
 
 .padding-top-bootom{
   padding-left: var(--padding-tp-btm-40);
