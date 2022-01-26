@@ -1,9 +1,7 @@
 const tabs = {
   popular: [
-    { name: "Streaming", id: 1 },
-    { name: "On TV", id: 2 },
-    { name: "For Rent", id: 3 },
-    { name: "In Theaters", id: 4 },
+    { name: "Streaming", id: 1, listName: "movie" },
+    { name: "On TV", id: 2, listName: "tv" },
   ],
   free: [
     { name: "Movies", id: 1 },

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSectionContext } from "../../components/Sections/context";
 import Movies from "../../components/Sections/Movies/Movies";
 import Searching from "../../components/Sections/searching/Searching";
-import http from "../../services/http";
 import tabs from "./mainData";
 import { PrimaryMain } from "./MainStyle";
 
