@@ -9,8 +9,7 @@ import {
   SearchingTaw,
 } from "./SectionsStyle";
 
-const Searching = memo(() => {
-  console.log("Searching");
+const Searching = () => {
   return (
     <SearchingPrimary className="searching-primary">
       <Container>
@@ -42,6 +41,6 @@ const Searching = memo(() => {
       </Container>
     </SearchingPrimary>
   );
-});
+};
 
 export default Searching;
