@@ -44,6 +44,7 @@ export const transition = css`
 
 export const SearchingPrimary = styled.section`
   width: 100%;
+  /* margin-bottom: 40px !important; */
   ${backgroundWhite}
   background-image: url(${searchin_bg});
   background-position-x: center;
@@ -55,6 +56,7 @@ export const SearchingNumbers = styled.div`
   width: 100%;
   ${flex_center}
   h2 {
+    margin-top: 40px;
     ${font_spaceMono}
     font-size: 8em;
     color: #fff;

@@ -1,5 +1,4 @@
-import React from "react";
-import { useSectionContext } from "../context";
+import React, { useEffect } from "react";
 import {
   MTabsContentCards,
   MovieTabCard,
@@ -11,26 +10,47 @@ import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import MovieTabCardInside from "./MovieTabCardInside";
 
-const MoviesabsContentItems = () => {
-  const { moviesData } = useSectionContext();
+const MoviesabsContentItems = ({
+  moviesData,
+  setMoviesBgImage,
+  trailersBlock,
+}) => {
+  const moviesBgControl = (id, bg_path) => {
+    setMoviesBgImage({
+      backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces${bg_path})`,
+    });
+  };
 
+  useEffect(() => {}, [setMoviesBgImage]);
   return (
-    <MTabsContentCards className="movie__tabs-content-items">
-      {moviesData.map((item) => {
-        const { id, backdrop_path, original_title, release_date } = item;
-        const { first_air_date, name } = item;
-        const voteAverage = `${item.vote_average}`.replace(".", "") + "%";
+    <MTabsContentCards
+      className={`movie__tabs-content-items ${trailersBlock && "wide-tabs"}`}
+    >
+      {moviesData.map((item, i) => {
+        const { id, backdrop_path, title, release_date, vote_average } = item;
+        const { first_air_date } = item;
+        const voteAverage =
+          `${Math.ceil(vote_average * 10)}`.replace(".", "") + "%";
         return (
-          <MovieTabCard className="movie__tabs-content-item tab-card" key={id}>
+          <MovieTabCard
+            className={`movie__tabs-content-item tab-card ${
+              trailersBlock && "wide-card"
+            }`}
+            style={{ marginTop: "10px", marginBottom: "20px" }}
+            key={id}
+          >
             <MovieTabCardTop className="tab-card__top">
               <MovieTabCardInside />
-              <Link to="/">
+              <Link
+                to="/"
+                onMouseOver={() => moviesBgControl(id, backdrop_path)}
+              >
                 <img
                   src={
-                    "https://www.themoviedb.org/t/p/w220_and_h330_face/" +
+                    "https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/" +
                     backdrop_path
                   }
-                  alt={original_title}
+                  alt={title}
                 />
               </Link>
               <div className="progressbar">
@@ -43,9 +63,7 @@ const MoviesabsContentItems = () => {
             </MovieTabCardTop>
             <MovieTabCardBottom className="tab-card__bottom">
               <h2>
-                <Link to={`/move/${id}`}>
-                  {(original_title && original_title) || (name && name)}
-                </Link>{" "}
+                <Link to={`/move/${id}`}>{title}</Link>
               </h2>
               <p>
                 {(release_date && release_date) ||

@@ -48,6 +48,7 @@ const MovieTabCardInside = () => {
       </MovieTabCardAdditem>
     );
   };
+
   if (control) {
     return (
       <OutsideClickHandler

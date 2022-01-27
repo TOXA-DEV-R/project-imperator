@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     --spaceMono : "Space Mono", monospace;
     --userscrollTrack1: 255,202,154;
     --imageBorderRadius: 8px;
+    --lightGreen: 30,213,169;
   }
 
 
@@ -27,7 +28,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track{
-  background: white;
+  background: var(--darkBlue);
 }
  
 body::-webkit-scrollbar-thumb {
@@ -81,7 +82,39 @@ body::-webkit-scrollbar-thumb {
     display: flex;
   }
 
+/* Style #1 */
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
 
+.loading--full-height {
+  align-items: center;
+  height: 100%;
+}
+
+.loading::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 10px solid #dddddd;
+  border-top-color: #009579;
+  border-radius: 50%;
+  transform: rotate(0.16turn);
+  animation: loading 1s ease infinite;
+}
+
+@keyframes loading {
+  /* Safari support */
+  from {
+    transform: rotate(0turn);
+  }
+  
+  to {
+    transform: rotate(1turn);
+  }
+}
 
 `;
 const with_sm = { minWidth: "576px", maxWidth: "540px" };
