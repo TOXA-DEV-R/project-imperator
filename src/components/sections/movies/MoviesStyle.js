@@ -8,9 +8,41 @@ import {
 
 export const Movie = styled.section`
   margin-top: 40px;
+  position: relative;
   .movie__container {
     display: flex;
     transform: translateX(-36px);
+  }
+  .movie__basic {
+    &::after {
+      content: "";
+      width: 60px;
+      height: 100%;
+      position: absolute;
+      z-index: 55;
+      top: 0;
+      right: 0%;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        #fff 100%
+      );
+      pointer-events: none;
+      -webkit-transition: all 150ms ease-in;
+      transition: all 150ms ease-in;
+    }
+  }
+
+  &.movie__scroll {
+    .movie__basic {
+      &::after {
+        background-image: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 100%,
+          #fff 0%
+        );
+      }
+    }
   }
 `;
 
@@ -110,22 +142,6 @@ export const MTabsContentCards = styled.ul`
   overflow-y: unset;
   position: relative;
 
-  &::after {
-    content: "";
-    width: 60px;
-    height: 100%;
-    position: absolute;
-    z-index: 55;
-    top: 0;
-    right: 0%;
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      #fff 100%
-    );
-    pointer-events: none;
-  }
-
   &::-webkit-scrollbar {
     height: 0.5em;
   }
@@ -143,7 +159,7 @@ export const MTabsContentCards = styled.ul`
 export const MovieTabCard = styled.li`
   margin-right: 20px;
   &:first-of-type {
-    margin-left: 30px;
+    margin-left: 40px;
   }
   &:last-of-type {
     margin-right: 0;
@@ -161,6 +177,7 @@ export const MovieTabCard = styled.li`
     .tab-card__bottom a,
     .tab-card__bottom,
     p {
+      text-align: center;
       ${colorWhite}
     }
   }
@@ -199,6 +216,27 @@ export const MovieTabCardTop = styled.div`
         font-size: 30px;
         font-weight: 600;
       }
+    }
+  }
+`;
+
+export const TabCardPlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  button {
+    width: 100%;
+    height: 100%;
+    ${flex_double_center}
+    background-color: transparent;
+    border: none;
+    transform: scale(1);
+    transition: all 100ms ease-in;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
     }
   }
 `;

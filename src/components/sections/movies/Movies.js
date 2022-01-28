@@ -28,9 +28,36 @@ const Movies = ({
   const [moviesData, setMoviesData] = useState([]);
   const [controlFetch, setControlFetch] = useState(true);
   // const { loading, setLoading } = useSectionContext();
-  const [moviesBgImage, setMoviesBgImage] = useState({});
+  const [moviesBgImage, setMoviesBgImage] = useState({
+    backgroundImage:
+      "url(https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg)",
+  });
+  const [scrollLeft, setScrollLeft] = useState(false);
 
-  console.log("response");
+  const tabControl = (id, listName) => {
+    setMovieTabCont(id);
+    if (listName === "streaming") {
+      setControlFetch(true);
+      setCategory("popular");
+    }
+    if (listName === "for_rent") {
+      setControlFetch(true);
+      setCategory("top_rated");
+    }
+    if (listName === "thisWeek") {
+      setControlFetch(true);
+      setCategory("top_rated");
+    }
+    if (listName === "in_theatre" || listName === "movies") {
+      setControlFetch(true);
+      setCategory("upcoming");
+    }
+    if (listName === "recommendations" || listName === "today") {
+      setControlFetch(true);
+      setCategory("804435/recommendations");
+    }
+    if (listName === "on_tv") setControlFetch(false);
+  };
 
   useEffect(() => {
     (async () => {
@@ -48,30 +75,11 @@ const Movies = ({
     })();
   }, [category, page, loading, list, controlFetch]);
 
-  const tabControl = (id, listName) => {
-    setMovieTabCont(id);
-    if (listName === "streaming") {
-      setControlFetch(true);
-      setCategory("popular");
-    }
-    if (listName === "for_rent") {
-      setControlFetch(true);
-      setCategory("top_rated");
-    }
-    if (listName === "in_theatre") {
-      setControlFetch(true);
-      setCategory("upcoming");
-    }
-    if (listName === "recommendations") {
-      setControlFetch(true);
-      setCategory("804435/recommendations");
-    }
-    if (listName === "on_tv") setControlFetch(false);
-    console.log(listName);
-  };
-
   return (
-    <Movie className="movie" style={trailersBlock && moviesBgImage}>
+    <Movie
+      className={scrollLeft ? "movie movie__scroll" : "movie"}
+      style={trailersBlock && moviesBgImage}
+    >
       <MovieBasic className="movie__basic" trailersBlock={trailersBlock}>
         <Container
           className="movie__container"
@@ -106,6 +114,7 @@ const Movies = ({
             moviesData={moviesData}
             setMoviesBgImage={setMoviesBgImage}
             trailersBlock={trailersBlock}
+            setScrollLeft={setScrollLeft}
           />
         </Container>
       </MovieBasic>

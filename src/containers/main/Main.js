@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSectionContext } from "../../components/Sections/context";
-import Movies from "../../components/Sections/Movies/Movies";
-import Searching from "../../components/Sections/searching/Searching";
+import Leaderboard from "../../components/sections/leaderboard/Leaderboard";
+import Movies from "../../components/sections/movies/Movies";
+import Searching from "../../components/sections/searching/Searching";
 import tabs from "./mainData";
 import { PrimaryMain } from "./MainStyle";
 
 const Main = () => {
   const [loading, setLoading] = useState(false);
-  console.log("Main");
+  // console.log("Main");
   useEffect(() => {}, [loading]);
 
   if (loading) {
@@ -26,7 +26,7 @@ const Main = () => {
         <Movies
           title={"Free To Watch"}
           tabs={tabs.free}
-          initialCategory="804435/recommendations"
+          initialCategory="upcoming"
           loading={loading}
           setLoading={setLoading}
         />
@@ -38,6 +38,14 @@ const Main = () => {
           setLoading={setLoading}
           trailersBlock={true}
         />
+        <Movies
+          title={"Trending"}
+          tabs={tabs.trending}
+          initialCategory="804435/recommendations"
+          loading={loading}
+          setLoading={setLoading}
+        />
+        <Leaderboard />
       </PrimaryMain>
     );
   }

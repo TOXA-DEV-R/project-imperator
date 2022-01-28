@@ -20,6 +20,9 @@ export const GlobalStyle = createGlobalStyle`
     --userscrollTrack1: 255,202,154;
     --imageBorderRadius: 8px;
     --lightGreen: 30,213,169;
+    --lighterGreen: 192,254,207;
+    --logoOrange: 253,193,112;
+    --logoRed: 217,59,99;
   }
 
 
@@ -146,7 +149,7 @@ const basicWidth = css`
   width: 100%;
 `;
 const fluidWidth = css`
-  max-width: 1340px !important;
+  max-width: 1400px !important;
   width: 100% !important;
 `;
 

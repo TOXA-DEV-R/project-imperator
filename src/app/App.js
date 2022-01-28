@@ -2,7 +2,7 @@ import { Fragment, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HeaderProvider } from "../components/header/context";
 import Header from "../components/header/Header";
-import { SectionsProvider } from "../components/Sections/context";
+import { SectionsProvider } from "../components/sections/context";
 import Main from "../containers/main/Main";
 import { GlobalStyle } from "./Style";
 
