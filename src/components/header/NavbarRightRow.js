@@ -8,13 +8,13 @@ import {
   NavbarTranslate,
   NavbarUser,
   NavbarUserContent,
-} from "./HeaderStyle";
+} from "./styles";
 import { BiPlusMedical } from "react-icons/bi";
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
-import { useHeaderContext } from "./context";
+import { useHeaderContext } from "../../containers/header/context";
 import OutsideClickHandler from "react-outside-click-handler";
 
 const HeaderRight = ({ displaySubmenu }) => {

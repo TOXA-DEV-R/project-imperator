@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
-import { Container } from "../../../app/Style";
+import { Container } from "../../../styles/styles";
 import http from "../../../services/http";
-import { useSectionContext } from "../context";
-import MoviesabsContentItems from "./MoviesabsContentItems";
-import {
-  Movie,
-  MovieBasic,
-  MovieTab,
-  MovieTabs,
-  MovieTitle,
-} from "./MoviesStyle";
+import TabsContentItems from "../../../components/sections/movies/TabsContentItems";
+import { Movie, MovieBasic, MovieTab, MovieTabs, MovieTitle } from "./styles";
 
 const KEY = "2dd08287b759101888b5a20c23399375";
 
@@ -110,7 +103,7 @@ const Movies = ({
           </MovieTabs>
         </Container>
         <Container initalWith={true} fluid={true}>
-          <MoviesabsContentItems
+          <TabsContentItems
             moviesData={moviesData}
             setMoviesBgImage={setMoviesBgImage}
             trailersBlock={trailersBlock}

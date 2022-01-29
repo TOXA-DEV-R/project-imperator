@@ -1,13 +1,12 @@
-import { memo } from "react";
 import { Link } from "react-router-dom";
-import { Col, Container, Row } from "../../../app/Style";
+import { Col, Container, Row } from "../../../styles/styles";
 import {
   SearchingForm,
   SearchingInputs,
   SearchingNumbers,
   SearchingPrimary,
   SearchingTaw,
-} from "./SectionsStyle";
+} from "./styles";
 
 const Searching = () => {
   return (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Leaderboard from "../../components/sections/leaderboard/Leaderboard";
-import Movies from "../../components/sections/movies/Movies";
+import Leaderboard from "../sections/leaderboard/Leaderboard";
+import Movies from "../sections/movies/Movies";
 import Searching from "../../components/sections/searching/Searching";
-import tabs from "./mainData";
-import { PrimaryMain } from "./MainStyle";
+import tabs from "./data";
+import { PrimaryMain } from "./styles";
 
 const Main = () => {
   const [loading, setLoading] = useState(false);

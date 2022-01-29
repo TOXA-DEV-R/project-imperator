@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import {
-  backgroundWhite,
-  colorBlack,
-  colorWhite,
-  flex_double_center,
-} from "../searching/SectionsStyle";
+import { colorBlack } from "../../../styles/styles";
 
-const linearGradientFirst = css`
+export const linearGradientFirst = css`
   background: linear-gradient(
     to right,
     rgba(var(--lighterGreen), 1) 0%,
@@ -15,7 +10,7 @@ const linearGradientFirst = css`
   );
 `;
 
-const linearGradientSecond = css`
+export const linearGradientSecond = css`
   background: linear-gradient(
     to right,
     rgba(var(--logoOrange), 1) 0%,
@@ -62,8 +57,3 @@ export const LeaderboardsInfoAll = styled.div`
     }
   }
 `;
-
-export const LeaderboardsList = styled.div``;
-export const LeaderboardsAvatar = styled.div``;
-export const LeaderboardsProgresses = styled.div``;
-export const LeaderboardsProgress = styled.div``;

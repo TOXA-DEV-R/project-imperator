@@ -9,10 +9,10 @@ import {
   SubmenuNotificationItem,
   SubmenuUserProfile,
   SubmenuUserGruop,
-} from "./SubmenuStyle";
+} from "./styles";
 import { IoMdArrowDropup } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useHeaderContext } from "./context";
+import { useHeaderContext } from "../../../containers/header/context";
 
 const Submenu = () => {
   const { navbarSubmenuControl, submenuStyle } = useHeaderContext();

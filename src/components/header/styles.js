@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { submenuCss, submenuDropup } from "./SubmenuStyle";
+import { submenuCss, submenuDropup } from "./submenu/styles";
 
 const white = css`
   color: var(--white);
@@ -11,44 +11,6 @@ const displayFlex = css`
 
 const transition = css`
   transition: all 180ms ease-in-out;
-`;
-
-// const repeat_font = css`
-//   background-color: red;
-// `;
-
-// const getFontsize = ({ size }) => {
-//   switch (size) {
-//     case "sm":
-//       return "13px";
-//     case "md":
-//       return "20px";
-//     case "lg":
-//       return "30px";
-//     case "xl":
-//       return "40px";
-//     default:
-//       return "50px";
-//   }
-// };
-
-// export const Container = styled.div`
-//   font-size: ${getFontsize};
-//   ${repeat_bagroundbg};
-//   display: ${({ displayl }) => (displayl ? "flex" : "block")};
-// `;
-export const Navbar = styled.header`
-  background-color: rgb(3, 37, 65);
-  position: relative;
-`;
-
-export const NavbarContainer = styled.div`
-  max-width: 1358px;
-  margin: 0 auto;
-  padding: 0 40px;
-  ${displayFlex}
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const NavbarLeft = styled.div`
@@ -66,11 +28,6 @@ export const NavbarLeft = styled.div`
 `;
 
 export const NavbarNav = styled.nav`
-  ${displayFlex}
-  align-items: center;
-`;
-
-export const NavbarNavList = styled.ul`
   ${displayFlex}
   align-items: center;
 `;
@@ -93,40 +50,9 @@ export const NavbarNavItem = styled.li`
   }
 `;
 
-export const NavbarInsideList = styled.ul`
-  position: absolute;
-  z-index: 111;
-  top: 47px;
-  left: -20px;
-  width: 173px;
-  ${submenuCss}
-  display: none;
-`;
-
-export const NavbarInsideLink = styled.li`
-  a {
-    color: #000;
-    font-weight: 400;
-    &:hover {
-      color: #16181b;
-    }
-  }
-  &:hover {
-    background-color: #f8f9fa;
-  }
-`;
-
-export const NavbarRight = styled.div``;
-
-export const NavbarPrimary = styled.ul`
-  margin: 16px 0;
-  display: flex;
+export const NavbarNavList = styled.ul`
+  ${displayFlex}
   align-items: center;
-  li {
-    margin-left: 30px;
-    position: relative;
-    z-index: 100;
-  }
 `;
 
 export const NavbarAdd = styled.li`
@@ -136,28 +62,6 @@ export const NavbarAdd = styled.li`
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
-`;
-
-export const NavbarTranslate = styled.li`
-  span {
-    width: 28px;
-    height: 28px;
-    ${displayFlex}
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--white);
-    border-radius: 2px;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    font-weight: 600;
-    ${white}
-    cursor: pointer;
-    ${transition}
-    &:hover {
-      background-color: var(--white);
-      color: rgb(3, 37, 65);
-    }
   }
 `;
 
@@ -185,6 +89,49 @@ export const NavbarNotifications = styled.li`
     justify-content: center;
     align-items: center;
     background-color: #c61439;
+  }
+`;
+
+export const NavbarPrimary = styled.ul`
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  li {
+    margin-left: 30px;
+    position: relative;
+    z-index: 100;
+  }
+`;
+
+export const NavbarSearch = styled.li`
+  button {
+    background-color: transparent;
+    border: unset;
+    cursor: pointer;
+  }
+`;
+
+export const NavbarRight = styled.div``;
+
+export const NavbarTranslate = styled.li`
+  span {
+    width: 28px;
+    height: 28px;
+    ${displayFlex}
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--white);
+    border-radius: 2px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: 600;
+    ${white}
+    cursor: pointer;
+    ${transition}
+    &:hover {
+      background-color: var(--white);
+      color: rgb(3, 37, 65);
+    }
   }
 `;
 
@@ -228,10 +175,25 @@ export const NavbarUserContent = styled.ul`
   width: 150px;
 `;
 
-export const NavbarSearch = styled.li`
-  button {
-    background-color: transparent;
-    border: unset;
-    cursor: pointer;
+export const NavbarInsideLink = styled.li`
+  a {
+    color: #000;
+    font-weight: 400;
+    &:hover {
+      color: #16181b;
+    }
   }
+  &:hover {
+    background-color: #f8f9fa;
+  }
+`;
+
+export const NavbarInsideList = styled.ul`
+  position: absolute;
+  z-index: 111;
+  top: 47px;
+  left: -20px;
+  width: 173px;
+  ${submenuCss}
+  display: none;
 `;

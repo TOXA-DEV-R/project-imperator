@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { NavbarInsideLink, NavbarInsideList } from "./HeaderStyle";
+import { NavbarInsideLink, NavbarInsideList } from "./styles";
 
 const InsideList = ({ links }) => {
   return (

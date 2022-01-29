@@ -55,5 +55,3 @@ export const SearchBarIcon = styled.span`
     cursor: pointer;
   }
 `;
-
-// export const  SearchBar = styled

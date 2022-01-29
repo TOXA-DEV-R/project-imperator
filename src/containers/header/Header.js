@@ -1,10 +1,10 @@
 import React, { useEffect, Fragment } from "react";
-import { Navbar, NavbarContainer } from "./HeaderStyle";
-import NavbarRightRow from "./NavbarRightRow";
-import NavbarLeftRow from "./NavbarLeftRow";
-import Submenu from "./Submenu";
+import { Navbar, NavbarContainer } from "./styles";
+import NavbarRightRow from "../../components/header/NavbarRightRow";
+import NavbarLeftRow from "../../components/header/NavbarLeftRow";
+import Submenu from "../../components/header/submenu/Submenu";
 import { useHeaderContext } from "./context";
-import SearchBar from "./SearchBar";
+import SearchBar from "./searchBar/SearchBar";
 
 const Header = () => {
   const {

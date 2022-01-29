@@ -4,9 +4,9 @@ import {
   LeaderboardsList,
   LeaderboardsProgresses,
   LeaderboardsProgress,
-} from "./LeaderboardStyle";
+} from "./styles";
 
-const LeaderboardList = ({
+const List = ({
   name,
   numberOne,
   numberTwo,
@@ -16,25 +16,38 @@ const LeaderboardList = ({
   path,
 }) => {
   return (
-    <LeaderboardsList className="leaderboards__list">
+    <LeaderboardsList
+      className="leaderboards__list"
+      style={{ marginRight: "25px" }}
+    >
       <LeaderboardsAvatar>
         <Link to={path}>
-          <span style={{ backgroundColor: avatarColor }}>s</span>
+          <span
+            style={{
+              backgroundColor: avatarColor,
+              width: "56px",
+              height: "56px",
+            }}
+          >
+            {name.slice(0, 1)}
+          </span>
         </Link>
       </LeaderboardsAvatar>
       <LeaderboardsProgresses className="leaderboards__progresses">
-        <h3 className="leaderboards__name">{name}</h3>
+        <h3 className="leaderboards__name">
+          <Link to={name}>{name}</Link>
+        </h3>
         <LeaderboardsProgress className="leaderboards__progress">
-          <span style={{ width: numberFirstWidth }}></span>
-          {numberOne}
+          <span style={{ width: numberFirstWidth, height: "8px" }}></span>
+          <p>{numberOne}</p>
         </LeaderboardsProgress>
         <LeaderboardsProgress className="leaderboards__progress two">
-          <span style={{ width: numberSecondWidth }}></span>
-          {numberTwo}
+          <span style={{ width: numberSecondWidth, height: "8px" }}></span>
+          <p>{numberTwo}</p>
         </LeaderboardsProgress>
       </LeaderboardsProgresses>
     </LeaderboardsList>
   );
 };
 
-export default LeaderboardList;
+export default List;

@@ -1,38 +1,11 @@
 import styled, { css } from "styled-components";
 import searchin_bg from "../../../assets/images/searching-bg.svg";
-
-export const colorWhite = css`
-  color: var(--white);
-`;
-
-export const backgroundWhite = css`
-  background-color: var(--white);
-`;
-
-export const colorBlack = css`
-  color: var(--black);
-`;
-
-export const backgroundBlack = css`
-  background-color: var(--black);
-`;
-
-export const flex_center = css`
-  display: flex;
-  justify-content: center;
-`;
-
-export const flex_double_center = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const flex_between = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import {
+  backgroundWhite,
+  colorBlack,
+  colorWhite,
+  flex_center,
+} from "../../../styles/styles";
 
 export const font_spaceMono = css`
   font-family: var(--spaceMono);
@@ -119,5 +92,3 @@ export const SearchingInputs = styled.div`
     }
   }
 `;
-// export const Searching = styled.div``;
-// export const Searching = styled.section``;

@@ -1,0 +1,48 @@
+const data = [
+  {
+    name: "Samara",
+    numberOne: "2,429,654",
+    numberTwo: "12,415",
+    numberFirstWidth: "90%",
+    numberSecondWidth: "92%",
+    avatarColor: "#8372e7",
+    path: "/",
+  },
+  {
+    name: "MyKonos222",
+    numberOne: "65,288",
+    numberTwo: "5,511",
+    numberFirstWidth: "60%",
+    numberSecondWidth: "45%",
+    avatarColor: "#0377d2",
+    path: "/",
+  },
+  {
+    name: "pingu51",
+    numberOne: "213,825",
+    numberTwo: "4,390",
+    numberFirstWidth: "40%",
+    numberSecondWidth: "62%",
+    avatarColor: "#0377d2",
+    path: "/",
+  },
+  {
+    name: "raze464",
+    numberOne: "246,281",
+    numberTwo: "3,708",
+    numberFirstWidth: "38%",
+    numberSecondWidth: "65%",
+    avatarColor: "red",
+    path: "/",
+  },
+  {
+    name: "CKmason14",
+    numberOne: "3,319",
+    numberTwo: "3,177",
+    numberFirstWidth: "30%",
+    numberSecondWidth: "65%",
+    avatarColor: "cadetblue",
+    path: "/",
+  },
+];
+export default data;

@@ -7,12 +7,12 @@ import {
   MovieTabCardAddList,
   MovieTabCardAdditem,
   TabCardAddBtn,
-} from "./MoviesStyle";
+} from "./styles";
 import { IoEllipsisHorizontalCircleSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const MovieTabCardInside = () => {
+const TabCardInside = () => {
   const [control, setControl] = useState(false);
 
   const cardList = [
@@ -80,4 +80,4 @@ const MovieTabCardInside = () => {
   }
 };
 
-export default MovieTabCardInside;
+export default TabCardInside;

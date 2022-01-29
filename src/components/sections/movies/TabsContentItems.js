@@ -5,14 +5,14 @@ import {
   MovieTabCardTop,
   MovieTabCardBottom,
   TabCardPlay,
-} from "./MoviesStyle";
+} from "./styles";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
-import MovieTabCardInside from "./MovieTabCardInside";
+import TabCardInside from "./TabCardInside";
 import { BsFillPlayFill } from "react-icons/bs";
 
-const MoviesabsContentItems = ({
+const TabsContentItems = ({
   moviesData,
   setMoviesBgImage,
   trailersBlock,
@@ -76,7 +76,7 @@ const MoviesabsContentItems = ({
             key={id}
           >
             <MovieTabCardTop className="tab-card__top">
-              <MovieTabCardInside />
+              <TabCardInside />
               {trailersBlock && (
                 <TabCardPlay
                   className="tab-card__play"
@@ -125,4 +125,4 @@ const MoviesabsContentItems = ({
   );
 };
 
-export default MoviesabsContentItems;
+export default TabsContentItems;

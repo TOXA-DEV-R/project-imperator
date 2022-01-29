@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  NavbarLeft,
-  NavbarNav,
-  NavbarNavItem,
-  NavbarNavList,
-} from "./HeaderStyle";
+import { NavbarLeft, NavbarNav, NavbarNavItem, NavbarNavList } from "./styles";
 import Logo from "../../assets/images/Logo_1.svg";
-import HeaderData from "./HeaderData";
+import data from "./data";
 import InsideList from "./InsideLink";
 
 const NavbarLeftRow = () => {
@@ -24,7 +19,7 @@ const NavbarLeftRow = () => {
       </Link>
       <NavbarNav className="navbar-nav">
         <NavbarNavList className="navbar-nav__list">
-          {HeaderData.map((item) => (
+          {data.map((item) => (
             <NavbarNavItem key={item.id} className="navbar-nav__item">
               <button type="button" onMouseOver={() => navbarLinkOver(item.id)}>
                 {item.label}

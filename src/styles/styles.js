@@ -1,5 +1,48 @@
 import styled, { createGlobalStyle, css } from "styled-components";
 
+const basicWidth = css`
+  max-width: 1278px;
+  width: 100%;
+`;
+
+const fluidWidth = css`
+  max-width: 1400px !important;
+  width: 100% !important;
+`;
+
+export const colorWhite = css`
+  color: var(--white);
+`;
+
+export const backgroundWhite = css`
+  background-color: var(--white);
+`;
+
+export const colorBlack = css`
+  color: var(--black);
+`;
+
+export const backgroundBlack = css`
+  background-color: var(--black);
+`;
+
+export const flex_center = css`
+  display: flex;
+  justify-content: center;
+`;
+
+export const flex_double_center = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const flex_between = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -26,15 +69,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
-body::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: .5em;
 }
 
-body::-webkit-scrollbar-track{
+html::-webkit-scrollbar-track{
   background: var(--darkBlue);
 }
  
-body::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: rgb(219,219,219);
   outline: none;
   border-radius: 6px;
@@ -85,7 +128,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
   }
 
-/* Style #1 */
+
 .loading {
   display: flex;
   justify-content: center;
@@ -134,24 +177,6 @@ const mediaScreenMin = (ct_inWith, width, children = null) => {
     }
   `;
 };
-
-// const mediaScreenMax = (ct_inWith, width, children = null) => {
-//   return css`
-//     @media screen and (max-width: ${width.maxWidth}) {
-//       ${ct_inWith && `max-width: ${width.maxWidth}`}
-//       ${children}
-//     }
-//   `;
-// };
-
-const basicWidth = css`
-  max-width: 1278px;
-  width: 100%;
-`;
-const fluidWidth = css`
-  max-width: 1400px !important;
-  width: 100% !important;
-`;
 
 export const Container = styled.div`
   ${({ initalWith }) => (initalWith ? null : basicWidth)}
