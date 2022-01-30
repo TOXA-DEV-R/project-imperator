@@ -1,15 +1,5 @@
 import styled, { createGlobalStyle, css } from "styled-components";
 
-const basicWidth = css`
-  max-width: 1278px;
-  width: 100%;
-`;
-
-const fluidWidth = css`
-  max-width: 1400px !important;
-  width: 100% !important;
-`;
-
 export const colorWhite = css`
   color: var(--white);
 `;
@@ -66,6 +56,8 @@ export const GlobalStyle = createGlobalStyle`
     --lighterGreen: 192,254,207;
     --logoOrange: 253,193,112;
     --logoRed: 217,59,99;
+    --imageBorderRadius: 8px;
+    --accountLightBlue: 1,180,228;
   }
 
 
@@ -177,6 +169,16 @@ const mediaScreenMin = (ct_inWith, width, children = null) => {
     }
   `;
 };
+
+const basicWidth = css`
+  max-width: 1278px;
+  width: 100%;
+`;
+
+const fluidWidth = css`
+  max-width: 1400px !important;
+  width: 100% !important;
+`;
 
 export const Container = styled.div`
   ${({ initalWith }) => (initalWith ? null : basicWidth)}

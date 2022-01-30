@@ -5,11 +5,11 @@ const black = css`
   color: var(--black);
 `;
 
-export const SearchingSuggestBlock = styled.div`
+export const SuggestBlock = styled.div`
   width: 100%;
 `;
 
-export const SearchSuggestTitle = styled.div`
+export const SuggestTitle = styled.div`
   height: 40px;
   background: rgba(var(--lightGrey), 0.3);
   display: flex;
@@ -21,15 +21,15 @@ export const SearchSuggestTitle = styled.div`
   }
 `;
 
-export const SearchSuggestIcon = styled.span`
+export const SuggestIcon = styled.span`
   margin-right: 7px;
 `;
 
-export const SearchSuggestResults = styled.ul`
+export const SuggestResults = styled.ul`
   width: 100%;
 `;
 
-export const SearchSuggestResult = styled.li`
+export const SuggestResult = styled.li`
   border-top: 1px solid rgba(var(--lightGrey), 1);
   padding-top: 10px;
   padding-bottom: 10px;

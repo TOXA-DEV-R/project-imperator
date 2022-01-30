@@ -1,10 +1,12 @@
 import { Fragment, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
 import { HeaderProvider } from "./containers/header/context";
 import Header from "./containers/header/Header";
 import Footer from "./containers/footer/Footer";
 import Main from "./containers/main/Main";
 import { GlobalStyle } from "./styles/styles";
+import Searching from "./containers/searching/index";
+import { ContainersProvider } from "./containers/context";
+import { Switch, Route } from "react-router-dom";
 
 const App = () => {
   // const headerControl = (event) => {
@@ -14,17 +16,20 @@ const App = () => {
   //   window.addEventListener("scroll", headerControl);
   //   return window.addEventListener("scroll", headerControl);
   // }, []);
-  console.log("app");
+
   return (
     <Fragment>
-      <GlobalStyle />
-      <HeaderProvider>
-        <Header />
-      </HeaderProvider>
-      <Routes>
-        <Route path="/" element={<Main />} />
-      </Routes>
-      <Footer />
+      <ContainersProvider>
+        <GlobalStyle />
+        <HeaderProvider>
+          <Header />
+        </HeaderProvider>
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/searching" exact component={Searching} />
+        </Switch>
+        <Footer />
+      </ContainersProvider>
     </Fragment>
   );
 };

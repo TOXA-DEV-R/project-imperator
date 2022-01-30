@@ -15,6 +15,7 @@ import { FaSearch } from "react-icons/fa";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useHeaderContext } from "../../containers/header/context";
+import { useContainersContext } from "../../containers/context";
 import OutsideClickHandler from "react-outside-click-handler";
 
 const HeaderRight = ({ displaySubmenu }) => {
@@ -25,9 +26,9 @@ const HeaderRight = ({ displaySubmenu }) => {
     setSearchBarControl,
     navbarSubmenuControl,
     setNavbarSubmenuControl,
-    submenuContol,
-    setSubmenuContol,
   } = useHeaderContext();
+
+  const { submenuContol, setSubmenuContol } = useContainersContext();
 
   useEffect(() => {
     if (submenuContol) {

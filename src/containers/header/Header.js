@@ -4,15 +4,13 @@ import NavbarRightRow from "../../components/header/NavbarRightRow";
 import NavbarLeftRow from "../../components/header/NavbarLeftRow";
 import Submenu from "../../components/header/submenu/Submenu";
 import { useHeaderContext } from "./context";
+import { useContainersContext } from "../context";
 import SearchBar from "./searchBar/SearchBar";
 
 const Header = () => {
-  const {
-    openSubmenu,
-    navbarSubmenuControl,
-    setNavbarSubmenuControl,
-    searchBarControl,
-  } = useHeaderContext();
+  const { navbarSubmenuControl, setNavbarSubmenuControl, searchBarControl } =
+    useHeaderContext();
+  const { openSubmenu } = useContainersContext();
 
   const displaySubmenu = (props) => {
     const { id, e } = props;

@@ -4,11 +4,16 @@ import Movies from "../sections/movies/Movies";
 import Searching from "../../components/sections/searching/Searching";
 import tabs from "./data";
 import { PrimaryMain } from "./styles";
+import { useContainersContext } from "../context";
 
-const Main = () => {
+const Main = (props) => {
   const [loading, setLoading] = useState(false);
+  const { setStrongCtrSubmenu } = useContainersContext();
+
   // console.log("Main");
-  useEffect(() => {}, [loading]);
+  useEffect(() => {
+    setStrongCtrSubmenu(false);
+  }, [loading]);
 
   if (loading) {
     return <div className="loading loading--full-height"></div>;

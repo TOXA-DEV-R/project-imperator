@@ -13,9 +13,11 @@ import {
 import { IoMdArrowDropup } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useHeaderContext } from "../../../containers/header/context";
+import { useContainersContext } from "../../../containers/context";
 
 const Submenu = () => {
-  const { navbarSubmenuControl, submenuStyle } = useHeaderContext();
+  const { navbarSubmenuControl } = useHeaderContext();
+  const { submenuStyle } = useContainersContext();
 
   const UserGroup = (props) => {
     return (
