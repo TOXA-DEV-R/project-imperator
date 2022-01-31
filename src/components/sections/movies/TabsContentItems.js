@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   MTabsContentCards,
   MovieTabCard,
@@ -11,6 +11,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import TabCardInside from "./TabCardInside";
 import { BsFillPlayFill } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
 const TabsContentItems = ({
   moviesData,
@@ -18,6 +19,7 @@ const TabsContentItems = ({
   trailersBlock,
   setScrollLeft,
 }) => {
+  const history = useHistory();
   const moviesBgControl = (id, bg_path) => {
     setMoviesBgImage({
       backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces${bg_path})`,
@@ -81,13 +83,16 @@ const TabsContentItems = ({
                 <TabCardPlay
                   className="tab-card__play"
                   onMouseOver={() => moviesBgControl(id, poster_path)}
+                  onClick={() => {
+                    history.push(`/movie/:${id}`);
+                  }}
                 >
                   <button type="button">
                     <BsFillPlayFill size={70} color="white" />
                   </button>
                 </TabCardPlay>
               )}
-              <Link to="/">
+              <Link to={`movie/:${id}`}>
                 <img
                   src={
                     (trailersBlock
