@@ -1,3 +1,5 @@
+/** @format */
+
 import { Fragment, useEffect } from "react";
 import { HeaderProvider } from "./containers/header/context";
 import Header from "./containers/header/Header";
@@ -26,9 +28,17 @@ const App = () => {
           <Header />
         </HeaderProvider>
         <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/searching" exact component={Searching} />
-          <Route path="/movie/:id" exact component={Movie} />
+          <Route path="/" render={(props) => <Main {...props} />} exact />
+          <Route
+            path="/searching"
+            render={(props) => <Searching {...props} />}
+            exact
+          />
+          <Route
+            path="/movie/:id"
+            render={(props) => <Movie {...props} />}
+            exact
+          />
         </Switch>
         <Footer />
       </ContainersProvider>

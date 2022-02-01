@@ -13,8 +13,8 @@ const MenuList = ({ title, classActive, data }) => {
         </span>
       </button>
       <List className="menu__list">
-        {data.map((item) => (
-          <Item className="menu__item">
+        {data.map((item, i) => (
+          <Item className="menu__item" key={i}>
             <Link to={item.path}>{item.name}</Link>
           </Item>
         ))}

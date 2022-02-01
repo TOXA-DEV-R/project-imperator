@@ -1,3 +1,8 @@
+import { FaListUl } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
+
 const data = {
   overView: [
     { path: "/", name: "Main", id: 0 },
@@ -22,6 +27,21 @@ const data = {
     { path: "/", name: "Share Link", id: 0 },
     { path: "/", name: "Facebook", id: 1 },
     { path: "/", name: "Tweet", id: 2 },
+  ],
+  infosAction: [
+    { progressbar: true, id: 1 },
+    { icon: <FaListUl color="white" size={16} />, info: "Add to list", id: 2 },
+    {
+      icon: <MdFavorite color="white" size={16} />,
+      info: "Mark as favorite",
+      id: 3,
+    },
+    {
+      icon: <BsFillBookmarkFill color="white" size={16} />,
+      info: "Add to your watchlist",
+      id: 4,
+    },
+    { icon: <AiFillStar color="white" size={16} />, info: "Rate It!", id: 5 },
   ],
 };
 export default data;

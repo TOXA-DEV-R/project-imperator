@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import Leaderboard from "../sections/leaderboard/Leaderboard";
 import Movies from "../sections/movies/Movies";

@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -7,17 +9,13 @@ import {
   AllInfosOverview,
 } from "./styles";
 
-const AllInfos = () => {
+const AllInfos = ({ overview, tagline }) => {
   return (
-    <AllInfo className="all-infos">
+    <AllInfo className="all-infos" style={{ marginTop: "20px" }}>
+      <h3 className="all-infos__title">{tagline}</h3>
       <AllInfosOverview className="all-infos__overview">
         <h3>Overview</h3>
-        <p>
-          Peter Parker is unmasked and no longer able to separate his normal
-          life from the high-stakes of being a super-hero. When he asks for help
-          from Doctor Strange the stakes become even more dangerous, forcing him
-          to discover what it truly means to be Spider-Man.
-        </p>
+        <p>{overview}</p>
       </AllInfosOverview>
       <AllInfosList className="all-infos__list">
         <AllInfosItem>

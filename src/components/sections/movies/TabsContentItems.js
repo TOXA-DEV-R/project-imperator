@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useRef } from "react";
 import {
   MTabsContentCards,
@@ -12,6 +14,8 @@ import { Link } from "react-router-dom";
 import TabCardInside from "./TabCardInside";
 import { BsFillPlayFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const TabsContentItems = ({
   moviesData,
@@ -71,10 +75,11 @@ const TabsContentItems = ({
 
         return (
           <MovieTabCard
-            className={`movie__tabs-cotent-item tab-card ${
-              trailersBlock && "wide-card"
+            className={`${
+              trailersBlock
+                ? "movie__tabs-cotent-item tab-card wide-card"
+                : "movie__tabs-cotent-item tab-card"
             }`}
-            style={{ marginTop: "25px", marginBottom: "20px" }}
             key={id}
           >
             <MovieTabCardTop className="tab-card__top">
@@ -92,8 +97,8 @@ const TabsContentItems = ({
                   </button>
                 </TabCardPlay>
               )}
-              <Link to={`movie/:${id}`}>
-                <img
+              <Link to={{ pathname: `movie/:${id}`, state: { id } }}>
+                <LazyLoadImage
                   src={
                     (trailersBlock
                       ? "https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/"
@@ -101,6 +106,8 @@ const TabsContentItems = ({
                     poster_path
                   }
                   alt={title}
+                  effect="blur"
+                  delayTime={30}
                 />
               </Link>
               {trailersBlock ? null : (

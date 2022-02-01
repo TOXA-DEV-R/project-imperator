@@ -1,3 +1,5 @@
+/** @format */
+
 import styled from "styled-components";
 import { css } from "styled-components";
 import {
@@ -203,23 +205,187 @@ export const InfosAction = styled.li`
     margin-left: 7px;
   }
 
-  span {
+  .infos__action-icon {
     display: flex;
   }
 
   .infos__show {
+    display: none;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #032540;
     li {
-      display: flex;
-      flex: 0 0 auto;
+      ${flex_double_center}
+      padding: 10px 0;
+      ${colorWhite}
+    }
+  }
+
+  .submenu__dropup {
+    position: absolute;
+    top: 43px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+
+  &:hover {
+    .infos__show {
+      display: block;
+    }
+    .submenu__dropup {
+      display: block;
+    }
+  }
+
+  &:nth-of-type(2) {
+    .infos__show {
+      width: 100px;
+    }
+  }
+
+  &:nth-of-type(3) {
+    .infos__show {
+      width: 140px;
+    }
+  }
+
+  &:nth-of-type(4) {
+    .infos__show {
+      width: 174px;
+    }
+  }
+
+  &:nth-of-type(5) {
+    .infos__show {
+      width: 78px;
     }
   }
 `;
 
-export const AllInfo = styled.div``;
-export const AllInfosOverview = styled.div``;
-export const AllInfosList = styled.ul``;
-export const AllInfosItem = styled.li``;
+export const AllInfo = styled.div`
+  .all-infos__title {
+    ${colorWhite}
+    font-size: 1em;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.7;
+  }
+`;
+export const AllInfosOverview = styled.div`
+  h3 {
+    ${colorWhite}
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  p {
+    margin-top: 10px;
+    ${colorWhite}
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+`;
+
+export const AllInfosList = styled.ul`
+  display: grid;
+  grid-template-columns: auto auto auto;
+`;
+
+export const AllInfosItem = styled.li`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  a {
+    font-size: 0.9em;
+    font-weight: 600;
+    display: inline-block;
+    ${colorWhite}
+    opacity: 1;
+    ${trans}
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  span {
+    margin-top: 5px;
+    ${colorWhite}
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+`;
+
+export const Actor = styled.section``;
+
+export const ActorsScroll = styled.div`
+  display: flex;
+  flex-direction: column;
+  .movie-actors {
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-top: 20px;
+  }
+`;
+
+export const ScrollList = styled.ul`
+  padding: 20px 0;
+  display: flex;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--darkBlue);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(219, 219, 219);
+    outline: none;
+    border-radius: 6px;
+  }
+`;
+
+export const Card = styled.li`
+  width: 138px;
+  margin-right: 20px;
+  border: 1px solid rgba(var(--lightGrey), 1);
+  border-radius: var(--imageBorderRadius);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+`;
+
+export const CardTop = styled.div`
+  width: 100%;
+
+  a {
+    width: 100%;
+    display: block;
+    span {
+      img {
+        border-radius: var(--imageBorderRadius) var(--imageBorderRadius) 0 0;
+      }
+    }
+  }
+`;
+
+export const CardBody = styled.div`
+  padding: 10px;
+  h3 {
+    font-size: 0.9em;
+    a {
+      color: var(--black);
+      opacity: 1;
+      ${trans}
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  p {
+    font-size: 0.9em;
+  }
+`;
