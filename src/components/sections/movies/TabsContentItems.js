@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   MTabsContentCards,
   MovieTabCard,
@@ -16,6 +16,11 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
+import http from "../../../services/http";
+
+const KEY = "2dd08287b759101888b5a20c23399375";
 
 const TabsContentItems = ({
   moviesData,
@@ -24,6 +29,8 @@ const TabsContentItems = ({
   setScrollLeft,
 }) => {
   const history = useHistory();
+  const [idCt, setIdCt] = useState(568124);
+  const [youtubeCt, setYoutube] = useState("");
   const moviesBgControl = (id, bg_path) => {
     setMoviesBgImage({
       backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces${bg_path})`,
@@ -31,7 +38,6 @@ const TabsContentItems = ({
   };
 
   const scrollLeftCard = useRef(null);
-
   const scrollHandle = (e) => {
     if (e.target.scrollLeft > 70) {
       setScrollLeft(true);
@@ -39,13 +45,23 @@ const TabsContentItems = ({
       setScrollLeft(false);
     }
   };
+  const [isOpen, setOpen] = useState(false);
+
   useEffect(() => {
     if (scrollLeftCard) {
       scrollLeftCard.current.addEventListener("scroll", scrollHandle);
-      // contentCards.current.target.addEventListener("scroll", scrollHandle);
-      // window.addEventListener
     }
   }, []);
+
+  useEffect(() => {
+    (() => {
+      http
+        .get(`/3/movie/${idCt}/videos?api_key=${KEY}`)
+        .then((data) => setYoutube(data.data.results.map((item) => item.key)))
+        .catch((err) => console.log(err));
+      console.log(youtubeCt);
+    })();
+  }, [idCt]);
 
   return (
     <MTabsContentCards
@@ -89,7 +105,11 @@ const TabsContentItems = ({
                   className="tab-card__play"
                   onMouseOver={() => moviesBgControl(id, poster_path)}
                   onClick={() => {
-                    history.push(`/movie/:${id}`);
+                    if (!trailersBlock) history.push(`/movie/:${id}`);
+                    if (trailersBlock) {
+                      setOpen(true);
+                      setIdCt(id);
+                    }
                   }}
                 >
                   <button type="button">
@@ -97,7 +117,7 @@ const TabsContentItems = ({
                   </button>
                 </TabCardPlay>
               )}
-              <Link to={{ pathname: `movie/:${id}`, state: { id } }}>
+              {trailersBlock ? (
                 <LazyLoadImage
                   src={
                     (trailersBlock
@@ -109,7 +129,21 @@ const TabsContentItems = ({
                   effect="blur"
                   delayTime={30}
                 />
-              </Link>
+              ) : (
+                <Link to={{ pathname: `movie/:${id}`, state: { id } }}>
+                  <LazyLoadImage
+                    src={
+                      (trailersBlock
+                        ? "https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/"
+                        : "https://www.themoviedb.org/t/p/w220_and_h330_face/") +
+                      poster_path
+                    }
+                    alt={title}
+                    effect="blur"
+                    delayTime={30}
+                  />
+                </Link>
+              )}
               {trailersBlock ? null : (
                 <div className="progressbar">
                   <CircularProgressbar
@@ -123,7 +157,7 @@ const TabsContentItems = ({
             </MovieTabCardTop>
             <MovieTabCardBottom className="tab-card__bottom">
               <h2>
-                <Link to={`/move/${id}`}>{title}</Link>
+                <Link to={`/move/:${id}`}>{title}</Link>
               </h2>
               <p>
                 {(release_date && release_date) ||
@@ -133,6 +167,13 @@ const TabsContentItems = ({
           </MovieTabCard>
         );
       })}
+      <ModalVideo
+        channel="youtube"
+        autoplay
+        isOpen={isOpen}
+        videoId={youtubeCt[0]}
+        onClose={() => setOpen(false)}
+      />
     </MTabsContentCards>
   );
 };

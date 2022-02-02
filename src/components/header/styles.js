@@ -1,3 +1,5 @@
+/** @format */
+
 import styled, { css } from "styled-components";
 import { submenuCss, submenuDropup } from "./submenu/styles";
 
@@ -72,7 +74,7 @@ export const NavbarNotifications = styled.li`
     border: none;
     cursor: pointer;
   }
-  &-counter {
+  .navbar__notifications-counter {
     position: absolute;
     top: -4px;
     right: -8px;

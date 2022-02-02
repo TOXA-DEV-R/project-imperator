@@ -16,7 +16,9 @@ const KEY = "2dd08287b759101888b5a20c23399375";
 const Index = (props) => {
   const [data, setData] = useState([]);
   const {
+    production_companies,
     backdrop_path,
+    original_language,
     title,
     release_date,
     vote_average,
@@ -78,7 +80,10 @@ const Index = (props) => {
           />
         </div>
       </Container>
-      <Actors />
+      <Actors
+        production_companies={production_companies}
+        original_language={original_language}
+      />
     </Movie>
   );
 };

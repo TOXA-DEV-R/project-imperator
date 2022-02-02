@@ -1,3 +1,5 @@
+/** @format */
+
 import styled, { createGlobalStyle, css } from "styled-components";
 
 export const colorWhite = css`
@@ -58,6 +60,8 @@ export const GlobalStyle = createGlobalStyle`
     --logoRed: 217,59,99;
     --imageBorderRadius: 8px;
     --accountLightBlue: 1,180,228;
+    --margin-top-25: 25px;
+    --margin-top-15: 15px;
   }
 
 

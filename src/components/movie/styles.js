@@ -334,6 +334,7 @@ export const ActorsScroll = styled.div`
 export const ScrollList = styled.ul`
   padding: 20px 0;
   display: flex;
+  position: relative;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     height: 0.5em;
@@ -347,6 +348,22 @@ export const ScrollList = styled.ul`
     background-color: rgb(219, 219, 219);
     outline: none;
     border-radius: 6px;
+  }
+
+  &::after {
+    content: "";
+    width: 60px;
+    height: 100%;
+    position: absolute;
+    z-index: 55;
+    top: 0;
+    right: 0%;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      #fff 100%
+    );
+    pointer-events: none;
   }
 `;
 
@@ -387,5 +404,107 @@ export const CardBody = styled.div`
   }
   p {
     font-size: 0.9em;
+  }
+`;
+
+export const AdditionalInfos = styled.div`
+  margin-top: 20px;
+  margin-left: 10px;
+`;
+
+export const Icons = styled.div`
+  a {
+    display: inline;
+    margin-left: 15px;
+  }
+`;
+
+const margin_top_25 = css`
+  margin-top: var(--margin-top-25);
+`;
+
+const margin_top_15 = css`
+  margin-top: var(--margin-top-15);
+`;
+
+export const SomeAdditionalInfo = styled.div`
+  margin-left: 20px;
+  ${margin_top_25}
+  .additional-infos {
+    &__fact {
+      ${colorBlack}
+      font-size: .9em;
+      font-weight: 600;
+    }
+
+    &__status {
+      ${margin_top_15}
+      font-size: .9em;
+      h4 {
+        margin-top: 5px;
+        font-weight: 600;
+      }
+    }
+
+    &__company {
+      ${margin_top_15}
+      a {
+        display: flex;
+        margin-top: 6px;
+      }
+      h3 {
+        font-size: 0.9em;
+        font-weight: 600;
+      }
+    }
+
+    &__type {
+      ${margin_top_15}
+      font-size: 0.9em;
+      h3 {
+        font-weight: 600;
+      }
+    }
+
+    &__language {
+      ${margin_top_15}
+      font-size: 0.9em;
+      h3 {
+        font-weight: 600;
+      }
+      p {
+        text-transform: capitalize;
+      }
+    }
+
+    &__keywords {
+      ${margin_top_15}
+      font-size: 0.9em;
+      border-bottom: 1px solid #d7d7d7;
+      padding-bottom: 40px;
+      h3 {
+        font-weight: 600;
+      }
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          margin-top: 10px;
+          background-color: rgba(0, 0, 0, 0.1);
+          border: 1px solid #d7d7d7;
+          padding: 4px 10px;
+          border-radius: 4px;
+          margin-left: 5px;
+          a {
+            color: #000;
+            display: flex;
+          }
+
+          &:first-of-type {
+            margin-left: 0;
+          }
+        }
+      }
+    }
   }
 `;

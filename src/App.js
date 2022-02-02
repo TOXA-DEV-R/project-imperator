@@ -1,32 +1,46 @@
 /** @format */
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { HeaderProvider } from "./containers/header/context";
 import Header from "./containers/header/Header";
 import Footer from "./containers/footer/Footer";
 import Main from "./containers/main/Main";
 import Movie from "./containers/movie/index";
 import { GlobalStyle } from "./styles/styles";
-import Searching from "./containers/searching/index";
 import { ContainersProvider } from "./containers/context";
+import { useGlobalContext } from "./context/context";
+import SearchBar from "./containers/searchBar/index";
+import Searching from "./containers/searching/index";
 import { Switch, Route } from "react-router-dom";
+import Sticky from "react-stickynode";
 
 const App = () => {
-  // const headerControl = (event) => {
-  //   // console.log(event);
-  // };
-  // useEffect(() => {
-  //   window.addEventListener("scroll", headerControl);
-  //   return window.addEventListener("scroll", headerControl);
-  // }, []);
+  const { searchBarControl } = useGlobalContext();
+  const [headerClass, setHeaderClass] = useState();
 
+  const handleStateChange = (status) => {
+    console.log(status.status, Sticky.STATUS_FIXED);
+    if (status.status === Sticky.STATUS_FIXED) {
+      setHeaderClass(true);
+    }
+    if (status.status === Sticky.STATUS_ORIGINAL) {
+      setHeaderClass(false);
+    }
+  };
   return (
     <Fragment>
       <ContainersProvider>
         <GlobalStyle />
         <HeaderProvider>
-          <Header />
+          <Sticky innerZ={1000} onStateChange={handleStateChange}>
+            <Header headerClass={headerClass} />
+          </Sticky>
         </HeaderProvider>
+        {searchBarControl && (
+          <Sticky innerZ={1000}>
+            <SearchBar />
+          </Sticky>
+        )}
         <Switch>
           <Route path="/" render={(props) => <Main {...props} />} exact />
           <Route

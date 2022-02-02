@@ -1,3 +1,5 @@
+/** @format */
+
 import styled, { css } from "styled-components";
 
 const displayFlex = css`
@@ -7,6 +9,12 @@ const displayFlex = css`
 export const Navbar = styled.header`
   background-color: rgb(3, 37, 65);
   position: relative;
+  transition: all 150ms ease-in;
+  transform: translateY(0);
+
+  &.nav-bar--hidden {
+    transform: translateY(-100%);
+  }
 `;
 
 export const NavbarContainer = styled.div`

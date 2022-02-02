@@ -1,3 +1,5 @@
+/** @format */
+
 import { createContext, useContext, useState } from "react";
 
 const ContainersContext = createContext();
@@ -5,7 +7,6 @@ const ContainersContext = createContext();
 const ContainersProvider = ({ children }) => {
   const [submenuStyle, setSubmenuStyle] = useState({});
   const [submenuContol, setSubmenuContol] = useState(false);
-  const [strongCtrSubmenu, setStrongCtrSubmenu] = useState(false);
 
   const openSubmenu = (props) => {
     setSubmenuStyle({ left: props.center, top: props.bottom });
@@ -19,8 +20,6 @@ const ContainersProvider = ({ children }) => {
         submenuContol,
         setSubmenuContol,
         openSubmenu,
-        strongCtrSubmenu,
-        setStrongCtrSubmenu,
       }}
     >
       {children}

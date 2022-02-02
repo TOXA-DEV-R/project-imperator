@@ -6,11 +6,11 @@ import Movies from "../sections/movies/Movies";
 import Searching from "../../components/sections/searching/Searching";
 import tabs from "./data";
 import { PrimaryMain } from "./styles";
-import { useContainersContext } from "../context";
+import { useGlobalContext } from "../../context/context";
 
-const Main = (props) => {
+const Main = () => {
   const [loading, setLoading] = useState(false);
-  const { setStrongCtrSubmenu } = useContainersContext();
+  const { setStrongCtrSubmenu } = useGlobalContext();
 
   // console.log("Main");
   useEffect(() => {

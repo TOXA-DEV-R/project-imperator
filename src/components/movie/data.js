@@ -1,7 +1,14 @@
+/** @format */
+
 import { FaListUl } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
+import { AiFillFacebook } from "react-icons/ai";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FiPlay } from "react-icons/fi";
+import { CgSmartHomeHeat } from "react-icons/cg";
 
 const data = {
   overView: [
@@ -42,6 +49,13 @@ const data = {
       id: 4,
     },
     { icon: <AiFillStar color="white" size={16} />, info: "Rate It!", id: 5 },
+  ],
+  additonalInfos: [
+    { icon: <AiFillFacebook color="black" size={27} />, id: 1 },
+    { icon: <FaTwitter color="black" size={27} />, id: 2 },
+    { icon: <FaInstagram color="black" size={27} />, id: 3 },
+    { icon: <FiPlay color="black" size={27} />, id: 4 },
+    { icon: <CgSmartHomeHeat color="black" size={27} />, id: 5 },
   ],
 };
 export default data;

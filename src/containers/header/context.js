@@ -1,3 +1,5 @@
+/** @format */
+
 import { createContext, useContext, useState } from "react";
 
 const HeaderContext = createContext();
@@ -9,8 +11,6 @@ const HeaderProvider = ({ children }) => {
     { name: "USER", control: false, id: 3 },
   ]);
   const [navbarUser, setNavbarUser] = useState(false);
-  const [searchBarControl, setSearchBarControl] = useState(false);
-
   return (
     <HeaderContext.Provider
       value={{
@@ -18,8 +18,6 @@ const HeaderProvider = ({ children }) => {
         setNavbarSubmenuControl,
         navbarUser,
         setNavbarUser,
-        searchBarControl,
-        setSearchBarControl,
       }}
     >
       {children}

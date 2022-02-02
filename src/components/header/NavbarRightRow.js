@@ -1,3 +1,5 @@
+/** @format */
+
 import { useEffect } from "react";
 import {
   NavbarAdd,
@@ -15,6 +17,7 @@ import { FaSearch } from "react-icons/fa";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useHeaderContext } from "../../containers/header/context";
+import { useGlobalContext } from "../../context/context";
 import { useContainersContext } from "../../containers/context";
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -22,11 +25,10 @@ const HeaderRight = ({ displaySubmenu }) => {
   const {
     setNavbarUser,
     navbarUser,
-    searchBarControl,
-    setSearchBarControl,
     navbarSubmenuControl,
     setNavbarSubmenuControl,
   } = useHeaderContext();
+  const { searchBarControl, setSearchBarControl } = useGlobalContext();
 
   const { submenuContol, setSubmenuContol } = useContainersContext();
 

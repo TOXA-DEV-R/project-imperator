@@ -1,16 +1,19 @@
-import React, { useEffect, Fragment } from "react";
+/** @format */
+
+import React, { useEffect, Fragment, useState } from "react";
 import { Navbar, NavbarContainer } from "./styles";
 import NavbarRightRow from "../../components/header/NavbarRightRow";
 import NavbarLeftRow from "../../components/header/NavbarLeftRow";
 import Submenu from "../../components/header/submenu/Submenu";
 import { useHeaderContext } from "./context";
 import { useContainersContext } from "../context";
-import SearchBar from "./searchBar/SearchBar";
+import useScrollListener from "./useScrollListener";
 
-const Header = () => {
-  const { navbarSubmenuControl, setNavbarSubmenuControl, searchBarControl } =
-    useHeaderContext();
+const Header = ({ headerClass }) => {
+  const { navbarSubmenuControl, setNavbarSubmenuControl } = useHeaderContext();
   const { openSubmenu } = useContainersContext();
+  const [navClassList, setNavClassList] = useState([]);
+  const scroll = useScrollListener();
 
   const displaySubmenu = (props) => {
     const { id, e } = props;
@@ -29,18 +32,28 @@ const Header = () => {
     openSubmenu({ center, bottom });
   };
 
-  useEffect(() => {}, [setNavbarSubmenuControl]);
-  console.log("header");
+  useEffect(() => {
+    const _classList = [];
+
+    if (scroll.y > 150 && scroll.y - scroll.lastY > 0)
+      _classList.push("nav-bar--hidden");
+
+    setNavClassList(_classList);
+  }, [scroll.y, scroll.lastY, setNavbarSubmenuControl]);
+
   return (
     <Fragment>
-      <Navbar className="navbar">
+      <Navbar
+        className={`navbar ${navClassList.join(" ")} ${
+          headerClass ? "stick-active" : "stick"
+        }`}
+      >
         <NavbarContainer className="navbar__container">
           <NavbarLeftRow />
           <NavbarRightRow displaySubmenu={displaySubmenu} />
         </NavbarContainer>
       </Navbar>
       <Submenu />
-      {searchBarControl && <SearchBar />}
     </Fragment>
   );
 };
