@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Card, CardTop, ResultList, CardBody } from "./styles";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
 const Right = ({ data }) => {
   return (
     <ResultList className="result__list" style={{ marginLeft: "30px" }}>
@@ -34,7 +33,6 @@ const Right = ({ data }) => {
                 </h3>
                 <span className="card__data">{release_date}</span>
               </div>
-
               <p className="card__texts">
                 {overview && overview.slice(0, KONTRO_TEXTS) + "..."}
               </p>

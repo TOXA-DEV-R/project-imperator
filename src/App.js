@@ -15,7 +15,7 @@ import { Switch, Route } from "react-router-dom";
 import Sticky from "react-stickynode";
 
 const App = () => {
-  const { searchBarControl } = useGlobalContext();
+  const { searchBarControl, searchingUpAndDown } = useGlobalContext();
   const [headerClass, setHeaderClass] = useState();
 
   const handleStateChange = (status) => {
@@ -27,6 +27,7 @@ const App = () => {
       setHeaderClass(false);
     }
   };
+
   return (
     <Fragment>
       <ContainersProvider>
@@ -37,7 +38,7 @@ const App = () => {
           </Sticky>
         </HeaderProvider>
         {searchBarControl && (
-          <Sticky innerZ={1000}>
+          <Sticky innerZ={1000} top={searchingUpAndDown}>
             <SearchBar />
           </Sticky>
         )}

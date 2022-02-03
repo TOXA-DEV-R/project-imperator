@@ -1,3 +1,5 @@
+/** @format */
+
 import styled, { css } from "styled-components";
 import searchin_bg from "../../../assets/images/searching-bg.svg";
 import {
@@ -15,7 +17,7 @@ export const transition = css`
   transition: all 250ms ease-in-out;
 `;
 
-export const SearchingPrimary = styled.section`
+export const Primary = styled.section`
   width: 100%;
   /* margin-bottom: 40px !important; */
   ${backgroundWhite}
@@ -25,7 +27,7 @@ export const SearchingPrimary = styled.section`
   background-repeat: no-repeat;
 `;
 
-export const SearchingNumbers = styled.div`
+export const Numbers = styled.div`
   width: 100%;
   ${flex_center}
   h2 {
@@ -35,7 +37,7 @@ export const SearchingNumbers = styled.div`
     color: #fff;
   }
 `;
-export const SearchingTaw = styled.div`
+export const Taw = styled.div`
   text-align: center;
   h2 {
     font-size: 2.7em;
@@ -54,12 +56,12 @@ export const SearchingTaw = styled.div`
   }
 `;
 
-export const SearchingForm = styled.form`
+export const Form = styled.form`
   margin-top: 60px;
   background-color: transparent;
 `;
 
-export const SearchingInputs = styled.div`
+export const Inputs = styled.div`
   width: 100%;
   height: 46px;
   position: relative;

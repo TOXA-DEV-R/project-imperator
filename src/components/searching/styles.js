@@ -1,3 +1,5 @@
+/** @format */
+
 import styled from "styled-components";
 import {
   backgroundWhite,
@@ -78,7 +80,11 @@ export const Card = styled.div`
 `;
 
 export const CardTop = styled.div`
+  width: 94px;
+  height: 100%;
   a {
+    width: 100%;
+    height: 100%;
     display: block;
     img {
       border-radius: var(--imageBorderRadius) 0 0 var(--imageBorderRadius);

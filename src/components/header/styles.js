@@ -20,7 +20,9 @@ export const NavbarLeft = styled.div`
   align-items: center;
   .navbar {
     &-brand {
+      display: block;
       margin-right: 25px;
+      cursor: pointer;
       img {
         width: 154px;
         height: 20px;
