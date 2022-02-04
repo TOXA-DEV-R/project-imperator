@@ -7,8 +7,6 @@ const GlobalContext = createContext();
 const GlobalProvider = ({ children }) => {
   const [searchBarControl, setSearchBarControl] = useState(false);
   const [searchingText, setSearchingText] = useState("");
-  const [strongCtrSubmenu, setStrongCtrSubmenu] = useState(false);
-  const [searchingUpAndDown, setSearchingUpAndDown] = useState(64);
   const [pages, setPages] = useState(1);
 
   return (
@@ -18,10 +16,6 @@ const GlobalProvider = ({ children }) => {
         setSearchBarControl,
         searchingText,
         setSearchingText,
-        strongCtrSubmenu,
-        setStrongCtrSubmenu,
-        searchingUpAndDown,
-        setSearchingUpAndDown,
         pages,
         setPages,
       }}

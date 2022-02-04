@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, NavbarContainer } from "./styles";
 import NavbarRightRow from "../../components/header/NavbarRightRow";
 import NavbarLeftRow from "../../components/header/NavbarLeftRow";
@@ -8,12 +8,13 @@ import Submenu from "../../components/header/submenu/Submenu";
 import { useHeaderContext } from "./context";
 import { useContainersContext } from "../context";
 import useScrollListener from "./useScrollListener";
-
-const Header = ({ headerClass }) => {
+import Sticky from "react-stickynode";
+const Header = () => {
   const { navbarSubmenuControl, setNavbarSubmenuControl } = useHeaderContext();
   const { openSubmenu } = useContainersContext();
   const [navClassList, setNavClassList] = useState([]);
   const scroll = useScrollListener();
+  const [headerClass, setHeaderClass] = useState("");
 
   const displaySubmenu = (props) => {
     const { id, e } = props;
@@ -32,6 +33,15 @@ const Header = ({ headerClass }) => {
     openSubmenu({ center, bottom });
   };
 
+  const handleStateChange = (status) => {
+    if (status.status === Sticky.STATUS_FIXED) {
+      setHeaderClass(true);
+    }
+    if (status.status === Sticky.STATUS_ORIGINAL) {
+      setHeaderClass(false);
+    }
+  };
+
   useEffect(() => {
     const _classList = [];
 
@@ -42,7 +52,7 @@ const Header = ({ headerClass }) => {
   }, [scroll.y, scroll.lastY, setNavbarSubmenuControl]);
 
   return (
-    <Fragment>
+    <Sticky innerZ={1000} onStateChange={handleStateChange}>
       <Navbar
         className={`navbar ${navClassList.join(" ")} ${
           headerClass ? "stick-active" : "stick"
@@ -54,7 +64,7 @@ const Header = ({ headerClass }) => {
         </NavbarContainer>
       </Navbar>
       <Submenu />
-    </Fragment>
+    </Sticky>
   );
 };
 

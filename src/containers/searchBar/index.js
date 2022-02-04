@@ -5,19 +5,16 @@ import { FaSearch } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
 import { Block, Form, Icon, Input, Section } from "./styles";
 // import Suggest from "../../../components/header/searchBar/Suggest";
-import OutsideClickHandler from "react-outside-click-handler";
 import { useHistory } from "react-router-dom";
 import { useGlobalContext } from "../../context/context";
 import { Container } from "../../styles/styles";
 import useScrollListener from "../header/useScrollListener";
+import Sticky from "react-stickynode";
+
 const Index = () => {
+  const [searchingUpAndDown, setSearchingUpAndDown] = useState(64);
   const scroll = useScrollListener();
-  const {
-    setSearchBarControl,
-    setSearchingText,
-    searchingText,
-    setSearchingUpAndDown,
-  } = useGlobalContext();
+  const { setSearchingText, searchingText } = useGlobalContext();
   const [inputValue, setiNputValue] = useState(searchingText);
   const history = useHistory();
 
@@ -37,35 +34,37 @@ const Index = () => {
     } else {
       setSearchingUpAndDown(64);
     }
-  }, [scroll.y, scroll.lastY]);
+  }, [scroll.lastY, scroll.y]);
 
   return (
-    <Block className={`search-bar__block`}>
-      <Container fluid={true} className="search-bar__container">
-        <Section className="search-bar__section">
-          <Form className="search-bar__form" onSubmit={submitHandle}>
-            <Input
-              type="input"
-              name="search"
-              value={inputValue}
-              placeholder="Search for a movie, tv show,person..."
-              onChange={(e) => setiNputValue(e.target.value)}
-              className="search-bar__input"
-            />
-            <Icon className="search-bar__icon">
-              <FaSearch size={15} />
-            </Icon>
-            <Icon
-              className="search-bar__icon"
-              onClick={() => setiNputValue("")}
-            >
-              <GrFormClose size={18} />
-            </Icon>
-          </Form>
-        </Section>
-        {/* <Suggest /> */}
-      </Container>
-    </Block>
+    <Sticky innerZ={1000} top={searchingUpAndDown}>
+      <Block className={`search-bar__block`}>
+        <Container fluid={true} className="search-bar__container">
+          <Section className="search-bar__section">
+            <Form className="search-bar__form" onSubmit={submitHandle}>
+              <Input
+                type="input"
+                name="search"
+                value={inputValue}
+                placeholder="Search for a movie, tv show,person..."
+                onChange={(e) => setiNputValue(e.target.value)}
+                className="search-bar__input"
+              />
+              <Icon className="search-bar__icon">
+                <FaSearch size={15} />
+              </Icon>
+              <Icon
+                className="search-bar__icon"
+                onClick={() => setiNputValue("")}
+              >
+                <GrFormClose size={18} />
+              </Icon>
+            </Form>
+          </Section>
+          {/* <Suggest /> */}
+        </Container>
+      </Block>
+    </Sticky>
   );
 };
 

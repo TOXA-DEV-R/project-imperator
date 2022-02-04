@@ -5,17 +5,10 @@ import Leaderboard from "../sections/leaderboard/Leaderboard";
 import Movies from "../sections/movies/Movies";
 import Searching from "../../components/sections/searching/Searching";
 import tabs from "./data";
-import { PrimaryMain } from "./styles";
-import { useGlobalContext } from "../../context/context";
 
 const Main = () => {
-  const { setStrongCtrSubmenu } = useGlobalContext();
-
-  // console.log("Main");
-  useEffect(() => {
-    setStrongCtrSubmenu(false);
-  }, []);
-
+  // useEffect(() => {}, []);
+  console.log("Main");
   return (
     <Fragment>
       <main>

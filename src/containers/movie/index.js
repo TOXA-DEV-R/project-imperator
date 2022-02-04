@@ -10,13 +10,14 @@ import { Movie, MovieImg } from "./styles";
 import http from "../../services/http/index";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useHistory } from "react-router-dom";
 
 const KEY = "2dd08287b759101888b5a20c23399375";
 
-const Index = (props) => {
+const Index = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const history = useHistory();
   const {
     production_companies,
     backdrop_path,
@@ -28,6 +29,7 @@ const Index = (props) => {
     overview,
     tagline,
     genres,
+    id,
   } = data;
   const voteAverage = Math.ceil(vote_average * 10);
   const voteAverageText =
@@ -35,7 +37,7 @@ const Index = (props) => {
 
   useEffect(() => {
     (() => {
-      const ONE_MOVEI_ID = props.location.state.id;
+      const ONE_MOVEI_ID = history.location.state.id;
       http
         .get(`/3/movie/${ONE_MOVEI_ID}?api_key=${KEY}&language=en-US`)
         .then((data) => {
@@ -44,7 +46,9 @@ const Index = (props) => {
         })
         .catch((err) => console.log(err));
     })();
-  }, [props.location.state]);
+  }, []);
+
+  console.log("movies");
   if (loading) {
     return <div className="loading loading--full-height"></div>;
   } else {
@@ -71,6 +75,7 @@ const Index = (props) => {
                   voteAverage={voteAverage}
                   voteAverageText={voteAverageText}
                   genres={genres}
+                  inId={id}
                 />
                 <AllInfos overview={overview} tagline={tagline} />
               </Col>

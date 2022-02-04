@@ -9,6 +9,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FiPlay } from "react-icons/fi";
 import { CgSmartHomeHeat } from "react-icons/cg";
+import { BsFillPlayFill } from "react-icons/bs";
 
 const data = {
   overView: [
@@ -49,6 +50,7 @@ const data = {
       id: 4,
     },
     { icon: <AiFillStar color="white" size={16} />, info: "Rate It!", id: 5 },
+    { icon: <BsFillPlayFill color="white" size={27} />, id: 6 },
   ],
   additonalInfos: [
     { icon: <AiFillFacebook color="black" size={27} />, id: 1 },

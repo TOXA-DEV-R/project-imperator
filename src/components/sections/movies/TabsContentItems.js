@@ -30,7 +30,8 @@ const TabsContentItems = ({
 }) => {
   const history = useHistory();
   const [idCt, setIdCt] = useState(568124);
-  const [youtubeCt, setYoutube] = useState("");
+  const [youtubeCt, setYoutube] = useState([]);
+  const [isOpen, setOpen] = useState(false);
   const moviesBgControl = (id, bg_path) => {
     setMoviesBgImage({
       backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces${bg_path})`,
@@ -45,7 +46,6 @@ const TabsContentItems = ({
       setScrollLeft(false);
     }
   };
-  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     if (scrollLeftCard) {
@@ -59,7 +59,6 @@ const TabsContentItems = ({
         .get(`/3/movie/${idCt}/videos?api_key=${KEY}`)
         .then((data) => setYoutube(data.data.results.map((item) => item.key)))
         .catch((err) => console.log(err));
-      console.log(youtubeCt);
     })();
   }, [idCt]);
 
@@ -167,13 +166,15 @@ const TabsContentItems = ({
           </MovieTabCard>
         );
       })}
-      <ModalVideo
-        channel="youtube"
-        autoplay
-        isOpen={isOpen}
-        videoId={youtubeCt[0]}
-        onClose={() => setOpen(false)}
-      />
+      {youtubeCt[0] && (
+        <ModalVideo
+          channel="youtube"
+          autoplay
+          isOpen={isOpen}
+          videoId={youtubeCt[0]}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </MTabsContentCards>
   );
 };

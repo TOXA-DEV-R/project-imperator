@@ -30,22 +30,23 @@ const HeaderRight = ({ displaySubmenu }) => {
   } = useHeaderContext();
   const { searchBarControl, setSearchBarControl } = useGlobalContext();
 
-  const { submenuContol, setSubmenuContol } = useContainersContext();
+  const removeSubmenu = () => {
+    setNavbarSubmenuControl(
+      navbarSubmenuControl.map((item) => {
+        return { ...item, control: false };
+      })
+    );
+  };
 
-  useEffect(() => {
-    if (submenuContol) {
-      setNavbarSubmenuControl(
-        navbarSubmenuControl.map((item) => {
-          return { ...item, control: false };
-        })
-      );
-    }
-  }, [submenuContol]);
+  const navbarSearchCtr = () => {
+    setSearchBarControl((ct) => !ct);
+    removeSubmenu();
+  };
 
   return (
     <OutsideClickHandler
       onOutsideClick={() => {
-        setSubmenuContol(true);
+        removeSubmenu();
       }}
     >
       <NavbarRight className="navbar__right">
@@ -85,10 +86,7 @@ const HeaderRight = ({ displaySubmenu }) => {
             )}
           </NavbarUser>
           <NavbarSearch className="navbar__search">
-            <button
-              type="button"
-              onClick={() => setSearchBarControl((ct) => !ct)}
-            >
+            <button type="button" onClick={navbarSearchCtr}>
               {searchBarControl ? (
                 <AiOutlineClose color="white" size={21} />
               ) : (

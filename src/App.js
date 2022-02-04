@@ -12,43 +12,24 @@ import { useGlobalContext } from "./context/context";
 import SearchBar from "./containers/searchBar/index";
 import Searching from "./containers/searching/index";
 import { Switch, Route } from "react-router-dom";
-import Sticky from "react-stickynode";
 
 const App = () => {
-  const { searchBarControl, searchingUpAndDown } = useGlobalContext();
-  const [headerClass, setHeaderClass] = useState();
-
-  const handleStateChange = (status) => {
-    console.log(status.status, Sticky.STATUS_FIXED);
-    if (status.status === Sticky.STATUS_FIXED) {
-      setHeaderClass(true);
-    }
-    if (status.status === Sticky.STATUS_ORIGINAL) {
-      setHeaderClass(false);
-    }
-  };
-
+  const { searchBarControl } = useGlobalContext();
+  useEffect(() => {
+    console.log("useEffect.....");
+  }, []);
+  console.log("app.....");
   return (
     <Fragment>
       <ContainersProvider>
         <GlobalStyle />
         <HeaderProvider>
-          <Sticky innerZ={1000} onStateChange={handleStateChange}>
-            <Header headerClass={headerClass} />
-          </Sticky>
+          <Header />
         </HeaderProvider>
-        {searchBarControl && (
-          <Sticky innerZ={1000} top={searchingUpAndDown}>
-            <SearchBar />
-          </Sticky>
-        )}
+        {searchBarControl && <SearchBar />}
         <Switch>
-          <Route path="/" render={(props) => <Main {...props} />} exact />
-          <Route
-            path="/searching"
-            render={(props) => <Searching {...props} />}
-            exact
-          />
+          <Route path="/" exact component={Main} />
+          <Route path="/searching" exact component={Searching} />
           <Route
             path="/movie/:id"
             render={(props) => <Movie {...props} />}

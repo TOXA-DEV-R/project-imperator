@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect } from "react";
 
-export default function useScrollListener() {
+const useScrollListener = () => {
   const [data, setData] = useState({
     x: 0,
     y: 0,
@@ -28,6 +28,6 @@ export default function useScrollListener() {
   }, []);
 
   return data;
-}
-
+};
+export default useScrollListener;
 export const ScrollContext = createContext(null);

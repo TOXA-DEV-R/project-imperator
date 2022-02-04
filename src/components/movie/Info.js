@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Info,
   InfosAction,
@@ -12,6 +12,11 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
 import data from "./data";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import ModalVideo from "react-modal-video";
+import http from "../../services/http";
+
+const KEY = "2dd08287b759101888b5a20c23399375";
 
 const Infos = ({
   title,
@@ -19,7 +24,12 @@ const Infos = ({
   genres = [],
   voteAverage = 70,
   voteAverageText = "70%",
+  inId,
 }) => {
+  const [idCt, setIdCt] = useState(568124);
+  const [youtubeCt, setYoutube] = useState("");
+  const [isOpen, setOpen] = useState(false);
+
   const progressControlColor = () => {
     if (voteAverage >= 70) {
       return buildStyles({
@@ -33,6 +43,16 @@ const Infos = ({
       });
     }
   };
+
+  useEffect(() => {
+    (() => {
+      http
+        .get(`/3/movie/${idCt}/videos?api_key=${KEY}`)
+        .then((data) => setYoutube(data.data.results.map((item) => item.key)))
+        .catch((err) => console.log(err));
+    })();
+  }, [idCt]);
+
   return (
     <Info className="infos">
       <InfoTitle className="infos__title">
@@ -89,21 +109,43 @@ const Infos = ({
                   </span>
                 </InfosAction>
               );
+            } else if (!info) {
+              return (
+                <InfosAction className="infos__action" key={id}>
+                  <span
+                    className="infos__action-icon"
+                    onClick={() => {
+                      setOpen(true);
+                      setIdCt(inId);
+                    }}
+                  >
+                    {icon}
+                  </span>
+                </InfosAction>
+              );
+            } else {
+              return (
+                <InfosAction className="infos__action" key={id}>
+                  <span className="submenu__dropup">
+                    <IoMdArrowDropup color="#032540" size={28} />
+                  </span>
+                  <span className="infos__action-icon">{icon}</span>
+                  <ul className="infos__show">
+                    <li>{info}</li>
+                  </ul>
+                </InfosAction>
+              );
             }
-            return (
-              <InfosAction className="infos__action" key={id}>
-                <span className="submenu__dropup">
-                  <IoMdArrowDropup color="#032540" size={28} />
-                </span>
-                <span className="infos__action-icon">{icon}</span>
-                <ul className="infos__show">
-                  <li>{info}</li>
-                </ul>
-              </InfosAction>
-            );
           })}
         </InfosActions>
       </InfoTitle>
+      <ModalVideo
+        channel="youtube"
+        autoplay
+        isOpen={isOpen}
+        videoId={youtubeCt[1]}
+        onClose={() => setOpen(false)}
+      />
     </Info>
   );
 };

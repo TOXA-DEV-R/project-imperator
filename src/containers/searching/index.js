@@ -32,7 +32,7 @@ const Index = () => {
       })
       .catch((err) => console.log(err));
   }, [searchingText, pages]);
-  console.log(pages);
+  console.log("searching");
   if (loading) {
     return <div className="loading loading--full-height"></div>;
   } else {
