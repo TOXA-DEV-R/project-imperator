@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   NavbarAdd,
   NavbarNotifications,
@@ -17,18 +17,19 @@ import { FaSearch } from "react-icons/fa";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useHeaderContext } from "../../containers/header/context";
-import { useGlobalContext } from "../../context/context";
-import { useContainersContext } from "../../containers/context";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const HeaderRight = ({ displaySubmenu }) => {
+const HeaderRight = ({
+  displaySubmenu,
+  setSearchBarControl,
+  searchBarControl,
+}) => {
   const {
     setNavbarUser,
     navbarUser,
     navbarSubmenuControl,
     setNavbarSubmenuControl,
   } = useHeaderContext();
-  const { searchBarControl, setSearchBarControl } = useGlobalContext();
 
   const removeSubmenu = () => {
     setNavbarSubmenuControl(
@@ -41,6 +42,7 @@ const HeaderRight = ({ displaySubmenu }) => {
   const navbarSearchCtr = () => {
     setSearchBarControl((ct) => !ct);
     removeSubmenu();
+    console.log("navbarSearchCtr");
   };
 
   return (

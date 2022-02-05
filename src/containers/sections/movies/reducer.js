@@ -1,7 +1,7 @@
 /** @format */
 
-const tabsReducer = (listName) => {
-  switch (listName) {
+const tabsReducer = (action) => {
+  switch (action.type) {
     case "streaming":
       return { ctrol: true, category: "popular" };
     case "for_rent":
@@ -17,7 +17,7 @@ const tabsReducer = (listName) => {
     case "on_tv":
       return { ctrol: false };
     default:
-      return listName;
+      return action;
   }
 };
 

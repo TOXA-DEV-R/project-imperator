@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { NavbarLeft, NavbarNav, NavbarNavItem, NavbarNavList } from "./styles";
 import Logo from "../../assets/images/Logo_1.svg";
 import data from "./data";
@@ -10,16 +10,18 @@ import { useGlobalContext } from "../../context/context";
 
 const NavbarLeftRow = () => {
   const [navbarItemId, setNavbarItemId] = useState(null);
-  const { setSearchBarControl, setSearchingText } = useGlobalContext();
+  const { setGlobalSearchBar, setGlobalSearchText } = useGlobalContext();
+
   const history = useHistory();
   const navbarLinkOver = (id) => {
     setNavbarItemId(id);
   };
 
   const navbarReset = () => {
-    setSearchBarControl(false);
-    setSearchingText("");
+    setGlobalSearchBar(false);
+    setGlobalSearchText("");
     history.push("/");
+    console.log("NavbarLeftRow");
   };
 
   return (

@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState, useEffect, memo, useReducer } from "react";
+import { useState, useEffect, memo } from "react";
 import { Container } from "../../../styles/styles";
 import http from "../../../services/http";
 import TabsContentItems from "../../../components/sections/movies/TabsContentItems";
@@ -12,11 +12,9 @@ const KEY = "2dd08287b759101888b5a20c23399375";
 const Movies = memo(({ tabs, title, initialCategory, trailersBlock }) => {
   const [movieTabCont, setMovieTabCont] = useState(1);
   const [category, setCategory] = useState(initialCategory);
-  const [tabsreducer, tbasDispatch] = useReducer(tabsReducer, {});
   const [moviesData, setMoviesData] = useState([]);
   const [controlFetch, setControlFetch] = useState(true);
   const [loading, setLoading] = useState(true);
-  // const { dataControl } = useContainersContext();
   const [scrollLeft, setScrollLeft] = useState(false);
   const [moviesBgImage, setMoviesBgImage] = useState({
     backgroundImage:
@@ -25,13 +23,11 @@ const Movies = memo(({ tabs, title, initialCategory, trailersBlock }) => {
 
   const tabControl = (id, listName) => {
     setMovieTabCont(id);
-    tbasDispatch(listName);
-    const { ctrol, category } = tabsreducer;
+    const { ctrol, category } = tabsReducer({ type: listName });
     setControlFetch(ctrol);
     setCategory(category);
   };
 
-  console.log("Movies");
   useEffect(() => {
     (async () => {
       try {
@@ -46,9 +42,7 @@ const Movies = memo(({ tabs, title, initialCategory, trailersBlock }) => {
         console.log(error);
       }
     })();
-  }, [category, setLoading, controlFetch]);
-
-  console.log("movies");
+  }, [category, loading, controlFetch]);
 
   if (loading) {
     return <div className="loading loading--full-height"></div>;

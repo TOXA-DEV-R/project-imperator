@@ -1,22 +1,26 @@
 /** @format */
-
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
-import { useGlobalContext } from "../../../context/context";
 import { Col, Container, Row } from "../../../styles/styles";
 import { Form, Inputs, Numbers, Primary, Taw } from "./styles";
+import { useGlobalContext } from "../../../context/context";
 
 const Searching = () => {
-  const [inputValue, setInputValue] = useState();
-  const { setSearchingText, setSearchBarControl } = useGlobalContext();
+  const { setGlobalSearchBar, globalSearchText, setGlobalSearchText } =
+    useGlobalContext();
+  const [inputValue, setInputValue] = useState(globalSearchText);
   const history = useHistory();
 
-  const inputHandel = (e) => {
+  const formHandel = (e) => {
     e.preventDefault();
-    history.push("/searching");
-    setSearchingText(inputValue);
-    setSearchBarControl(true);
+    history.push({
+      pathname: `/searching`,
+      state: { inputValue },
+    });
+    setGlobalSearchBar(true);
+    setGlobalSearchText(inputValue);
   };
+
   return (
     <Primary className="searching-primary">
       <Container>
@@ -33,15 +37,14 @@ const Searching = () => {
             </Taw>
           </Col>
           <Col md="11">
-            <Form className="searching-primary__form" onSubmit={inputHandel}>
+            <Form className="searching-primary__form" onSubmit={formHandel}>
               <Inputs className="searching-primary__inputs">
                 <input
-                  typeof="input"
                   type="text"
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
                   className="searching-primary__input"
                   placeholder="Search for a movie, tv show,person..."
+                  onChange={(e) => setInputValue(e.target.value)}
                 />
                 <button type="submit">search</button>
               </Inputs>

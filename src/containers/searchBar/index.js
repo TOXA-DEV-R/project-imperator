@@ -1,30 +1,28 @@
 /** @format */
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
 import { Block, Form, Icon, Input, Section } from "./styles";
-// import Suggest from "../../../components/header/searchBar/Suggest";
 import { useHistory } from "react-router-dom";
-import { useGlobalContext } from "../../context/context";
 import { Container } from "../../styles/styles";
 import useScrollListener from "../header/useScrollListener";
 import Sticky from "react-stickynode";
+import { useGlobalContext } from "../../context/context";
 
 const Index = () => {
   const [searchingUpAndDown, setSearchingUpAndDown] = useState(64);
   const scroll = useScrollListener();
-  const { setSearchingText, searchingText } = useGlobalContext();
-  const [inputValue, setiNputValue] = useState(searchingText);
   const history = useHistory();
+  const { globalSearchText } = useGlobalContext();
+  const [inputValue, setInputValue] = useState(globalSearchText);
 
   const submitHandle = (event) => {
     event.preventDefault();
     if (inputValue.length < 1) {
       alert("Enter value, please");
-    } else if (inputValue.length > 1) {
-      setSearchingText(inputValue);
-      history.push("/searching");
+    } else {
+      history.push({ pathname: `/searching`, state: { inputValue } });
     }
   };
 
@@ -34,7 +32,7 @@ const Index = () => {
     } else {
       setSearchingUpAndDown(64);
     }
-  }, [scroll.lastY, scroll.y]);
+  }, [scroll.lastY, scroll.y, globalSearchText]);
 
   return (
     <Sticky innerZ={1000} top={searchingUpAndDown}>
@@ -47,7 +45,7 @@ const Index = () => {
                 name="search"
                 value={inputValue}
                 placeholder="Search for a movie, tv show,person..."
-                onChange={(e) => setiNputValue(e.target.value)}
+                onChange={(e) => setInputValue(e.target.value)}
                 className="search-bar__input"
               />
               <Icon className="search-bar__icon">
@@ -55,7 +53,7 @@ const Index = () => {
               </Icon>
               <Icon
                 className="search-bar__icon"
-                onClick={() => setiNputValue("")}
+                onClick={() => setInputValue("")}
               >
                 <GrFormClose size={18} />
               </Icon>

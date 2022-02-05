@@ -1,23 +1,22 @@
 /** @format */
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [searchBarControl, setSearchBarControl] = useState(false);
-  const [searchingText, setSearchingText] = useState("");
-  const [pages, setPages] = useState(1);
+  const [globalSearchBar, setGlobalSearchBar] = useState(false);
+  const [globalSearchText, setGlobalSearchText] = useState("");
+
+  useEffect(() => {}, [globalSearchBar, globalSearchText]);
 
   return (
     <GlobalContext.Provider
       value={{
-        searchBarControl,
-        setSearchBarControl,
-        searchingText,
-        setSearchingText,
-        pages,
-        setPages,
+        globalSearchBar,
+        setGlobalSearchBar,
+        globalSearchText,
+        setGlobalSearchText,
       }}
     >
       {children}

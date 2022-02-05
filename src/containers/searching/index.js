@@ -3,20 +3,21 @@
 import { useEffect } from "react";
 import http from "../../services/http/index";
 import { Buttons, Searching } from "./styles";
-import { useContainersContext } from "../context";
-import { useGlobalContext } from "../../context/context";
 import { useState } from "react/cjs/react.development";
 import Left from "../../components/searching/Left";
 import Right from "../../components/searching/Right";
 import { Col, Container, Row } from "../../styles/styles";
 import ReactPaginate from "react-paginate";
+import { useHistory } from "react-router-dom";
 
 const KEY = "2dd08287b759101888b5a20c23399375";
 
 const Index = () => {
-  const { searchingText, pages, setPages } = useGlobalContext();
+  const [pages, setPages] = useState(1);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { location } = useHistory();
+
   const changePage = ({ selected }) => {
     setPages(selected);
   };
@@ -24,15 +25,15 @@ const Index = () => {
   useEffect(() => {
     http
       .get(
-        `/3/search/movie?api_key=${KEY}&language=en-US&query=${searchingText}&page=${pages}&include_adult=false`
+        `/3/search/movie?api_key=${KEY}&language=en-US&query=${location.state.inputValue}&page=${pages}&include_adult=false`
       )
       .then((data) => {
         setData(data.data.results);
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [searchingText, pages]);
-  console.log("searching");
+  }, [pages, location]);
+
   if (loading) {
     return <div className="loading loading--full-height"></div>;
   } else {

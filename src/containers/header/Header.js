@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Navbar, NavbarContainer } from "./styles";
 import NavbarRightRow from "../../components/header/NavbarRightRow";
 import NavbarLeftRow from "../../components/header/NavbarLeftRow";
@@ -9,12 +9,17 @@ import { useHeaderContext } from "./context";
 import { useContainersContext } from "../context";
 import useScrollListener from "./useScrollListener";
 import Sticky from "react-stickynode";
+import SearchBar from "../searchBar/index";
+import { useGlobalContext } from "../../context/context";
+
 const Header = () => {
   const { navbarSubmenuControl, setNavbarSubmenuControl } = useHeaderContext();
   const { openSubmenu } = useContainersContext();
   const [navClassList, setNavClassList] = useState([]);
   const scroll = useScrollListener();
-  const [headerClass, setHeaderClass] = useState("");
+  const [headerClass, setHeaderClass] = useState([]);
+  const { globalSearchBar, setGlobalSearchBar } = useGlobalContext();
+  const [searchBarControl, setSearchBarControl] = useState(globalSearchBar);
 
   const displaySubmenu = (props) => {
     const { id, e } = props;
@@ -29,7 +34,6 @@ const Header = () => {
           : { ...item, control: false };
       })
     );
-
     openSubmenu({ center, bottom });
   };
 
@@ -49,22 +53,36 @@ const Header = () => {
       _classList.push("nav-bar--hidden");
 
     setNavClassList(_classList);
-  }, [scroll.y, scroll.lastY, setNavbarSubmenuControl]);
+    setSearchBarControl(globalSearchBar);
+  }, [
+    scroll.y,
+    scroll.lastY,
+    setNavbarSubmenuControl,
+    globalSearchBar,
+    setGlobalSearchBar,
+  ]);
 
   return (
-    <Sticky innerZ={1000} onStateChange={handleStateChange}>
-      <Navbar
-        className={`navbar ${navClassList.join(" ")} ${
-          headerClass ? "stick-active" : "stick"
-        }`}
-      >
-        <NavbarContainer className="navbar__container">
-          <NavbarLeftRow />
-          <NavbarRightRow displaySubmenu={displaySubmenu} />
-        </NavbarContainer>
-      </Navbar>
-      <Submenu />
-    </Sticky>
+    <Fragment>
+      <Sticky innerZ={1000} onStateChange={handleStateChange}>
+        <Navbar
+          className={`navbar ${navClassList.join(" ")} ${
+            headerClass ? "stick-active" : "stick"
+          }`}
+        >
+          <NavbarContainer className="navbar__container">
+            <NavbarLeftRow />
+            <NavbarRightRow
+              displaySubmenu={displaySubmenu}
+              setSearchBarControl={setSearchBarControl}
+              searchBarControl={searchBarControl}
+            />
+          </NavbarContainer>
+        </Navbar>
+        <Submenu />
+      </Sticky>
+      {searchBarControl && <SearchBar />}
+    </Fragment>
   );
 };
 
