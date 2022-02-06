@@ -42,7 +42,6 @@ const HeaderRight = ({
   const navbarSearchCtr = () => {
     setSearchBarControl((ct) => !ct);
     removeSubmenu();
-    console.log("navbarSearchCtr");
   };
 
   return (

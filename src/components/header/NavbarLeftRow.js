@@ -21,7 +21,6 @@ const NavbarLeftRow = () => {
     setGlobalSearchBar(false);
     setGlobalSearchText("");
     history.push("/");
-    console.log("NavbarLeftRow");
   };
 
   return (

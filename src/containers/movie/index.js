@@ -48,7 +48,6 @@ const Index = () => {
     })();
   }, []);
 
-  console.log("movies");
   if (loading) {
     return <div className="loading loading--full-height"></div>;
   } else {

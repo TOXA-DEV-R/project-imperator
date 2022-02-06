@@ -1,6 +1,6 @@
 /** @format */
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { HeaderProvider } from "./containers/header/context";
 import Header from "./containers/header/Header";
 import Footer from "./containers/footer/Footer";
@@ -10,12 +10,11 @@ import { GlobalStyle } from "./styles/styles";
 import { ContainersProvider } from "./containers/context";
 import Searching from "./containers/searching/index";
 import { Switch, Route } from "react-router-dom";
+// import { ErrorBoundary } from "react-error-boundary";
 
 const App = () => {
-  useEffect(() => {
-    console.log("useEffect...");
-  }, []);
-  console.log("App...");
+  useEffect(() => {}, []);
+
   return (
     <Fragment>
       <ContainersProvider>

@@ -8,7 +8,6 @@ import tabs from "./data";
 
 const Main = () => {
   useEffect(() => {}, []);
-  console.log("Main");
   return (
     <Fragment>
       <main>
