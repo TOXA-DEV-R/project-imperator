@@ -1,13 +1,22 @@
-import styled from "styled-components";
+/** @format */
+
+import styled, { css } from "styled-components";
 import {
   linearGradientFirst,
   linearGradientSecond,
 } from "../../../containers/sections/leaderboard/styles";
-import {
-  colorBlack,
-  colorWhite,
-  flex_double_center,
-} from "../../../styles/styles";
+
+const colorWhite = css`
+  color: var(--white);
+`;
+const colorBlack = css`
+  color: var(--black);
+`;
+const flex_double_center = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const LeaderboardsAvatar = styled.div`
   span {

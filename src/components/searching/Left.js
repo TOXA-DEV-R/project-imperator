@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { List, Results } from "./styles";
+import { List, ListItem, Results } from "./styles";
 import data from "./data";
 
 const Left = () => {
@@ -8,10 +8,15 @@ const Left = () => {
     return (
       <List className="searching__list">
         {data.map((item) => (
-          <li className="searching__item">
+          <ListItem
+            className={
+              item.id === 0 ? "searching__item active" : "searching__item"
+            }
+            key={item.id}
+          >
             <Link to={item.path}>{item.name}</Link>
             <span>{item.result}</span>
-          </li>
+          </ListItem>
         ))}
       </List>
     );

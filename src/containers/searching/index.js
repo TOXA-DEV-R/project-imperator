@@ -1,71 +1,84 @@
-import { Fragment, useEffect } from "react";
+/** @format */
+
+import { useEffect } from "react";
 import http from "../../services/http/index";
-import { Searching } from "./styles";
-import { useContainersContext } from "../context";
-import { useGlobalContext } from "../../context/context";
+import { Buttons, Searching } from "./styles";
 import { useState } from "react/cjs/react.development";
-import { Link } from "react-router-dom";
 import Left from "../../components/searching/Left";
+import Right from "../../components/searching/Right";
 import { Col, Container, Row } from "../../styles/styles";
+import ReactPaginate from "react-paginate";
+import { useHistory } from "react-router-dom";
+
 const KEY = "2dd08287b759101888b5a20c23399375";
 
 const Index = () => {
-  const { setSubmenuContol } = useContainersContext();
-  const { searchingText } = useGlobalContext();
   const [pages, setPages] = useState(1);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { location } = useHistory();
 
-  // console.log(useHis);
+  const changePage = ({ selected }) => {
+    setPages(selected);
+  };
+
   useEffect(() => {
     http
       .get(
-        `/3/search/movie?api_key=${KEY}&language=en-US&query=${searchingText}&page=${pages}&include_adult=false`
+        `/3/search/movie?api_key=${KEY}&language=en-US&query=${location.state.inputValue}&page=${pages}&include_adult=false`
       )
       .then((data) => {
         setData(data.data.results);
-        setSubmenuContol(true);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [searchingText, pages]);
+  }, [pages, location]);
 
-  return (
-    <Fragment>
-      <Searching className="container section-cards">
+  if (loading) {
+    return <div className="loading loading--full-height"></div>;
+  } else {
+    return (
+      <Searching
+        className="container section-cards"
+        style={{ marginTop: "30px" }}
+      >
         <Container fluid={true} className="padding-top-bootom">
           <Row>
-            <Col md="2">
+            <Col md="2.5">
               <Left />
             </Col>
-            <Col md="10">
-              <div className="right-section">
-                {data.map((item) => {
-                  const { title, release_date, poster_path, overview, id } =
-                    item;
-                  return (
-                    <div class="card-long">
-                      <div class="card-img">
-                        <Link to={id}>
-                          <img
-                            src={`https://www.themoviedb.org/t/p/w94_and_h141_bestv2/${poster_path}`}
-                            alt={title}
-                          />
-                        </Link>
-                      </div>
-                      <div class="card-texT">
-                        <h3>{title}</h3>
-                        <p class="data">{release_date}</p>
-                        <p class="lorem-text">{overview}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <Col md="9.5">
+              <Right data={data} />
             </Col>
           </Row>
+          <Col>
+            <Buttons>
+              <ReactPaginate
+                initialPage={pages}
+                previousLabel={"< previous"}
+                nextLabel={`next >`}
+                breakLabel={"..."}
+                pageCount={16}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={6}
+                onPageChange={changePage}
+                containerClassName={"pagination justify-center"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextClassName={"page-item"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+                activeClassName={"active"}
+              />
+            </Buttons>
+          </Col>
         </Container>
       </Searching>
-    </Fragment>
-  );
+    );
+  }
 };
 
 export default Index;

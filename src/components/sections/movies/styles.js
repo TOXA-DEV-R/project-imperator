@@ -1,3 +1,5 @@
+/** @format */
+
 import styled from "styled-components";
 import {
   backgroundWhite,
@@ -27,6 +29,8 @@ export const MTabsContentCards = styled.ul`
 
 export const MovieTabCard = styled.li`
   margin-right: 20px;
+  margin-top: 25px;
+  margin-bottom: 20px;
   &:first-of-type {
     margin-left: 40px;
   }
@@ -115,6 +119,7 @@ export const TabCardPlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
   width: 100%;
   height: 100%;
   button {
@@ -177,6 +182,7 @@ export const TabCardAddBtn = styled.button`
   background-color: transparent;
   border: none;
   position: absolute;
+  z-index: 20;
   top: 7px;
   right: 7px;
   cursor: pointer;

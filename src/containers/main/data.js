@@ -1,3 +1,5 @@
+/** @format */
+
 const tabs = {
   popular: [
     { name: "Streaming", id: 1, listName: "streaming" },

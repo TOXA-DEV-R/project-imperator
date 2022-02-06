@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+/** @format */
+
+import { useEffect, useState } from "react";
 import {
   NavbarAdd,
   NavbarNotifications,
@@ -15,35 +17,37 @@ import { FaSearch } from "react-icons/fa";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useHeaderContext } from "../../containers/header/context";
-import { useContainersContext } from "../../containers/context";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const HeaderRight = ({ displaySubmenu }) => {
+const HeaderRight = ({
+  displaySubmenu,
+  setSearchBarControl,
+  searchBarControl,
+}) => {
   const {
     setNavbarUser,
     navbarUser,
-    searchBarControl,
-    setSearchBarControl,
     navbarSubmenuControl,
     setNavbarSubmenuControl,
   } = useHeaderContext();
 
-  const { submenuContol, setSubmenuContol } = useContainersContext();
+  const removeSubmenu = () => {
+    setNavbarSubmenuControl(
+      navbarSubmenuControl.map((item) => {
+        return { ...item, control: false };
+      })
+    );
+  };
 
-  useEffect(() => {
-    if (submenuContol) {
-      setNavbarSubmenuControl(
-        navbarSubmenuControl.map((item) => {
-          return { ...item, control: false };
-        })
-      );
-    }
-  }, [submenuContol]);
+  const navbarSearchCtr = () => {
+    setSearchBarControl((ct) => !ct);
+    removeSubmenu();
+  };
 
   return (
     <OutsideClickHandler
       onOutsideClick={() => {
-        setSubmenuContol(true);
+        removeSubmenu();
       }}
     >
       <NavbarRight className="navbar__right">
@@ -83,10 +87,7 @@ const HeaderRight = ({ displaySubmenu }) => {
             )}
           </NavbarUser>
           <NavbarSearch className="navbar__search">
-            <button
-              type="button"
-              onClick={() => setSearchBarControl((ct) => !ct)}
-            >
+            <button type="button" onClick={navbarSearchCtr}>
               {searchBarControl ? (
                 <AiOutlineClose color="white" size={21} />
               ) : (
